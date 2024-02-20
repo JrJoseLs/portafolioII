@@ -12,14 +12,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #97a5d4;
-} */
-
 body {
   justify-content: center;
   align-items: center;

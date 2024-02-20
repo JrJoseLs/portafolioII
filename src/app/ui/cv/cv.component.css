@@ -139,3 +139,46 @@
   position: relative;
   bottom: 4px;
 }
+
+
+/*=============== RESPONSIVE ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+}
+
+/* For medium devices */
+@media screen and (min-width: 768px) {
+
+}
+
+/* For large devices */
+@media screen and (min-width: 1120px) {
+
+}
+
+/*-----------------*/
+@media screen and (max-width: 600px) {
+  .curriculum h2 {
+  font-size: 18px;
+  padding: 10px 0;
+  }
+  .curriculum .fila .col h3 {
+    font-size: 18px;
+  }
+  .curriculum .fila .item h4 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  }
+
+  .curriculum .fila .item .casa {
+  font-size: 12px;
+  }
+  .curriculum .fila .item .fecha {
+  font-size: 10px;
+  }
+  .curriculum .fila .item p {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+

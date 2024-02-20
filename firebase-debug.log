@@ -1,0 +1,21 @@
+[debug] [2024-02-20T22:13:38.726Z] ----------------------------------------------------------------------
+[debug] [2024-02-20T22:13:38.727Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\junio\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-02-20T22:13:38.727Z] CLI Version:   13.3.0
+[debug] [2024-02-20T22:13:38.728Z] Platform:      win32
+[debug] [2024-02-20T22:13:38.728Z] Node Version:  v18.17.1
+[debug] [2024-02-20T22:13:38.729Z] Time:          Tue Feb 20 2024 18:13:38 GMT-0400 (hora de Bolivia)
+[debug] [2024-02-20T22:13:38.729Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-20T22:13:38.735Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-20T22:13:38.736Z] > authorizing via signed-in user (juniorysabel@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Copia\GAflow\Cv + LinkedIn + works\Portafolio\POTAFOLIOS HTML\jr-port - HTML\J-port2024\j-port
+

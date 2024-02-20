@@ -132,7 +132,7 @@ img {
     overflow: hidden;
   }
 }
-/*=============== BREAKPOINTS ===============*/
+/*=============== RESPONSIVE ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
   .container {
@@ -172,3 +172,21 @@ img {
     padding-inline: 2.5rem;
   }
 }
+
+/*-----------------*/
+@media screen and (max-width: 600px) {
+    .container {
+    margin-inline: 1rem;
+
+  }
+  .card__container {
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+  .card__data {
+    width: 160px;
+    padding: 1rem;
+    font-size: 14px;
+  }
+}
+
