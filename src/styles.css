@@ -1,1 +1,132 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #97a5d4;
+} */
+
+body {
+  justify-content: center;
+  align-items: center;
+
+  gap: 50px;
+
+  /* background: #444; */
+}
+
+/*  */
+:root {
+  --bg: #444;
+  --prub: #fff;
+  --main: #4fc3dc;
+}
+
+/*DARK-MODE*/
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 6em;
+    font-weight: 800; */
+  /* color: rgba(255, 255, 255, 0.1); */
+  /* background: #333; */
+
+  /* background-color: #ffffff; */
+  background-color: #e8e8e8;
+  /* text-transform: uppercase; */
+
+  /* background-color: #e8e8e8; */
+
+  display: flex;
+}
+
+section:nth-child(even) {
+  /* background: #444; */
+  /* background-color: #e4e4e4; */
+}
+
+section:nth-child(3) {
+  height: 100%;
+}
+
+section:nth-child(4) {
+  height: 100%;
+}
+
+section:nth-child(5) {
+  height: 100%;
+}
+
+section:nth-child(6) {
+  height: 100%;
+}
+
+section:nth-child(7) {
+  height: 100%;
+
+}
+
+/* Estilos para el modo oscuro */
+/*SIDEBAR*/
+.icon {
+  color: #333;
+}
+/*BANNER*/
+.navigation li a {
+  color: #333;
+}
+/*Projects*/
+.card__description {
+  color: #111;
+}
+/*Footer*/
+footer .container .quicklinks ul li a {
+  color: #555;
+}
+/*DARK*/
+.dark-mode {
+  background-color: #444;
+  color: #fff;
+
+  .icon {
+    color: #fff;
+  }
+
+  .card {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .navigation li a {
+    color: #fff;
+  }
+
+  .card .content h2 {
+    color: #fff;
+  }
+
+  footer .container .quicklinks ul li a {
+  color: #fff;
+}
+}
+
+

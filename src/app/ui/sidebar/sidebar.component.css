@@ -1,0 +1,130 @@
+/*BARRA DE NAVEGACION*/
+.sidebar {
+  position: absolute;
+  width: 60px;
+  height: 100vh;
+  /* background: #444; */
+  overflow: hidden;
+  transition: 0.5s;
+
+  position: fixed;
+  /* backdrop-filter: blur(20px); */
+  z-index: 1000000;
+}
+/* .sidebar:hover {
+  width: 250px;
+} */
+.sidebar ul {
+  position: relative;
+  height: 100vh;
+
+  padding: 0;
+
+}
+
+.sidebar ul li {
+  list-style: none;
+
+}
+
+.sidebar ul li:hover {
+  /* background: #f3f3f3; */
+  opacity: 0.5;
+  /* border-radius: 50%;  */
+
+}
+
+.sidebar ul li a {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  height: 60px;
+  font-size: 1.1em;
+  /* color: #333; */
+}
+
+.sidebar ul li a .text {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  min-width: 60px;
+  font-size: 1em;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  /*Quitar texto*/
+  visibility: hidden;
+}
+
+/*LOGO*/
+.sidebar ul li.logo {
+  margin-bottom: 50px;
+  font-size: 1.5em;
+}
+
+.sidebar ul li.logo:hover {
+  background: #fff;
+}
+
+.sidebar ul li.logo .icon {
+  font-size: 2em;
+}
+
+.sidebar ul li.logo .text {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+/*Logout*/
+.bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/*+ img*/
+.bottom .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* .bottom .imgBx img {} */
+
+
+
+
+/*
+
+DARK MODE
+https://www.youtube.com/watch?v=6wYiYsroqX4&ab_channel=SoulDev
+
+*/
+
+
+
+/* .sidebar {
+    background-color: #ffffff;
+    color: #000000;
+} */
+
+/* Estilos para modo oscuro */
+
+/* .dark-mode .sidebar {
+    background-color: #000000;
+    color: #ffffff;
+} */
+

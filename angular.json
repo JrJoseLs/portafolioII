@@ -25,7 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/primeflex/primeflex.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
@@ -94,5 +97,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "4e6205e4-7614-44c6-a24d-89db78602976"
   }
 }
