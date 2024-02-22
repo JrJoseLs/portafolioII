@@ -179,18 +179,20 @@
 
 /*=============== RESPONSIVE ===============*/
 /* For small devices */
-@media screen and (min-width: 340px) {
+@media screen and (max-width: 600px) {
+  .curriculum {
+      display: grid;
+      padding: 0;
+      margin: 0;
+    }
+
   .curriculum .fila .izquierda {
-    width: 50%;
   }
   .curriculum .fila .derecha {
-    width: 50%;
   }
 
 
-  .curriculum {
-    display: grid;
-  }
+
   .curriculum h2 {
     font-size: 12px;
     padding: 4px 0;
@@ -198,7 +200,7 @@
   }
 
   .curriculum .fila .col h3 {
-    font-size: 12px;
+    font-size: 18px;
     margin-left: 10px;
   }
 
