@@ -201,25 +201,25 @@
 
   .curriculum .fila .col h3 {
     font-size: 18px;
-    margin-left: 10px;
+    margin-left: 13px;
   }
 
   .curriculum .fila .item h4 {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 4px;
   }
 
   .curriculum .fila .item .casa {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .curriculum .fila .item .fecha {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .curriculum .fila .item p {
-    font-size: 8px;
-    line-height: 9px;
+    font-size: 10px;
+    line-height: 11px;
   }
 }
 

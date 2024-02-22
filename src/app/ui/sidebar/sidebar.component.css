@@ -107,6 +107,8 @@
 @media screen and (max-width: 600px) {
   .sidebar {
     visibility: hidden;
+    width: auto;
+    height: auto;
   }
   .bottom .darkMode {
     margin-bottom: 35%;
