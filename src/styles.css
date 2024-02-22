@@ -79,6 +79,7 @@ section:nth-child(7) {
 
 /* Estilos para el modo oscuro */
 /*SIDEBAR*/
+
 .icon {
   color: #333;
 }
@@ -102,7 +103,6 @@ footer .container .quicklinks ul li a {
   .icon {
     color: #fff;
   }
-
   .card {
     background-color: #333;
     color: #fff;
@@ -118,7 +118,7 @@ footer .container .quicklinks ul li a {
 
   footer .container .quicklinks ul li a {
   color: #fff;
-}
+  }
 }
 
 

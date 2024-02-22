@@ -1,6 +1,4 @@
-section {
-  overflow: auto;
-}
+
 #skills {
   padding: 0;
   margin: 0;
@@ -126,11 +124,17 @@ section {
 
 /* For large devices */
 @media screen and (min-width: 1120px) {
+  section {
+      overflow: auto;
+    }
 
 }
 
 /*-----------------*/
 @media screen and (max-width: 600px) {
+  section {
+      overflow: auto;
+    }
     .containerS {
     width: 100%;
     height: 100vh;
