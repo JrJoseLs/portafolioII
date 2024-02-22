@@ -179,7 +179,15 @@
 
 /*=============== RESPONSIVE ===============*/
 /* For small devices */
-@media screen and (max-width: 340px) {
+@media screen and (min-width: 340px) {
+  .curriculum .fila .izquierda {
+    width: 50%;
+  }
+  .curriculum .fila .derecha {
+    width: 50%;
+  }
+
+
   .curriculum {
     display: grid;
   }
