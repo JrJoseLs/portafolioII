@@ -231,13 +231,13 @@
 @media screen and (max-width: 340px) {
   .section {
       width: 100%;
-
+      margin-top: 35px;
     }
   .section .contenedorS h2 {
-    font-size: 1.7em;
+    font-size: 1.5em;
   }
   p {
-    font-size: 0.7em;
+    font-size: 0.6em;
   }
   .section .contenedorS .buttoms a {
     padding: 3px 9px;
@@ -272,7 +272,6 @@
   @media screen and (max-width: 768px) {
       .section {
         width: 100%;
-
       }
 
       .section .contenedorS h2 {

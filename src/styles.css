@@ -122,3 +122,26 @@ footer .container .quicklinks ul li a {
 }
 
 
+/*=============== RESPONSIVE ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  body {
+    scroll-behavior: none;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 600px) {
+  @media screen and (max-width: 768px) {
+    body {
+      scroll-behavior: none;
+    }
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1120px) {
+  body {
+    scroll-behavior: none;
+  }
+}
