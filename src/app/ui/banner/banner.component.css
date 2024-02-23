@@ -299,20 +299,22 @@
 
 /* For large devices */
 @media screen and (max-height: 768px) {
-  .section {
-      bottom: 0;
-      margin-top: 25px;
-    }
-  .section .contenedorS h2 {
-    font-size: 1.8em;
-  }
+  @media screen and (max-width: 1366px) {
+    .section {
+        bottom: 0;
 
-  p {
-    font-size: 0.8em;
-  }
+      }
 
-  .section .contenedorS .buttoms a {
-    padding: 4px 12px;
-  }
+      .section .contenedorS h2 {
+        font-size: 1.8em;
+      }
 
+      p {
+        font-size: 0.8em;
+      }
+
+      .section .contenedorS .buttoms a {
+        padding: 4px 12px;
+      }
+  }
 }
