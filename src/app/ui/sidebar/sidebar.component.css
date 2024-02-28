@@ -12,6 +12,7 @@
   z-index: 1000000;
 
 }
+
 /* .sidebar:hover {
   width: 250px;
 } */
@@ -102,6 +103,7 @@
   border-radius: 50%;
   overflow: hidden;
 }
+
 /*=============== RESPONSIVE ===============*/
 
 @media screen and (max-width: 600px) {
@@ -110,9 +112,9 @@
     width: auto;
     height: auto;
   }
+
   .bottom .darkMode {
     margin-bottom: 35%;
     visibility: visible;
   }
 }
-

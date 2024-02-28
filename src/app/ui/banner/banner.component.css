@@ -253,28 +253,6 @@
 }
 
 /*-----------------*/
-/* @media screen and (max-width: 600px) {
-  .card {
-    padding: 10px;
-  }
-
-  .section {
-    width: 100%;
-    bottom: 0;
-  }
-
-  .section .contenedorS h2 {
-    font-size: 2.5em;
-  }
-
-  p {
-    font-size: 0.9em;
-  }
-
-  .section .contenedorS .buttoms a {
-    padding: 5px 15px;
-  }
-} */
 /*-----------------*/
 /* For medium devices */
 @media screen and (min-width: 600px) {
@@ -301,20 +279,20 @@
 @media screen and (max-height: 768px) {
   @media screen and (max-width: 1366px) {
     .section {
-        bottom: 0;
+      bottom: 0;
 
-      }
+    }
 
-      .section .contenedorS h2 {
-        font-size: 1.8em;
-      }
+    .section .contenedorS h2 {
+      font-size: 1.8em;
+    }
 
-      p {
-        font-size: 0.8em;
-      }
+    p {
+      font-size: 0.8em;
+    }
 
-      .section .contenedorS .buttoms a {
-        padding: 4px 12px;
-      }
+    .section .contenedorS .buttoms a {
+      padding: 4px 12px;
+    }
   }
 }
