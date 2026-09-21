@@ -1,0 +1,134 @@
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.column__title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.column__title--spaced {
+  margin-top: 1.5rem;
+}
+
+.degree {
+  display: flex;
+  gap: 1.1rem;
+  padding: 1.5rem;
+}
+.degree__icon,
+.cert__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  background: var(--gradient);
+  color: #fff;
+  --icon-size: 1.35rem;
+}
+.degree__meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.degree__title {
+  margin-top: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.degree__school {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.degree__description {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.certs {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+}
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+}
+.cert__icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.8rem;
+  background: var(--fill);
+  color: var(--accent);
+  --icon-size: 1.2rem;
+}
+.cert > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+.cert strong {
+  font-size: 0.98rem;
+  color: var(--text);
+}
+.cert__check {
+  color: var(--success);
+}
+
+.languages {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.3rem;
+  list-style: none;
+}
+.language__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.language__row span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.meter {
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--fill-strong);
+  overflow: hidden;
+}
+.meter span {
+  display: block;
+  height: 100%;
+  width: calc(var(--value) * 100%);
+  border-radius: inherit;
+  background: var(--gradient);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease-out) 0.3s;
+}
+:host .languages:not(.is-visible) .meter span {
+  transform: scaleX(0);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

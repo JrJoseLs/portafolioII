@@ -1,0 +1,289 @@
+:host {
+  display: contents;
+}
+
+/* ---------- Barra superior ---------- */
+.topbar {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    translate 0.4s var(--ease-out);
+}
+
+.dock {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  max-width: 100%;
+}
+
+.brand {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  flex: none;
+}
+.brand__mark {
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: -0.04em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.links {
+  display: flex;
+  gap: 0.1rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-2);
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background-color 0.25s ease;
+  --icon-size: 1.05rem;
+}
+.link:hover {
+  color: var(--text);
+  background: var(--fill);
+}
+.link.is-active {
+  color: var(--text);
+  background: var(--fill-strong);
+}
+.link.is-active app-icon {
+  color: var(--accent);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-left: 0.35rem;
+  margin-left: 0.2rem;
+  border-left: 1px solid var(--border);
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  color: var(--text-2);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  --icon-size: 1.1rem;
+}
+.control:hover {
+  color: var(--text);
+  background: var(--fill);
+}
+
+.control--lang {
+  gap: 0;
+  padding: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--fill);
+}
+.control--lang span {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.3s ease;
+}
+.control--lang span.is-on {
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-icon {
+  position: relative;
+  display: grid;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+.theme-icon app-icon {
+  grid-area: 1 / 1;
+  transition:
+    transform 0.5s var(--ease-spring),
+    opacity 0.3s ease;
+}
+.theme-icon .moon {
+  transform: rotate(-90deg) scale(0.4);
+  opacity: 0;
+}
+.theme-icon.is-dark .sun {
+  transform: rotate(90deg) scale(0.4);
+  opacity: 0;
+}
+.theme-icon.is-dark .moon {
+  transform: none;
+  opacity: 1;
+}
+
+/* ---------- Barra inferior (móvil) ---------- */
+.tabbar {
+  display: none;
+}
+
+/* ---------- Progreso de lectura (CSS scroll-driven animations) ---------- */
+.scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 31;
+    background: var(--gradient);
+    transform-origin: 0 50%;
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1180px) {
+  .link span {
+    display: none;
+  }
+  .link {
+    padding: 0.55rem;
+  }
+  .link.is-active span {
+    display: inline;
+  }
+  .link.is-active {
+    padding-inline: 0.85rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .topbar {
+    justify-content: space-between;
+  }
+  .dock {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .links {
+    display: none;
+  }
+  .controls {
+    border-left: 0;
+  }
+  .control--search kbd {
+    display: none;
+  }
+
+  .tabbar {
+    position: fixed;
+    left: 50%;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    translate: -50% 0;
+    z-index: 30;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.1rem;
+    width: min(calc(100% - 1.5rem), 30rem);
+    padding: 0.35rem;
+    border-radius: 1.4rem;
+    transition:
+      opacity 0.4s ease,
+      translate 0.4s var(--ease-out);
+  }
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.45rem 0.1rem;
+    border-radius: 1rem;
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    transition:
+      color 0.2s ease,
+      background-color 0.25s ease;
+    --icon-size: 1.3rem;
+  }
+  .tab.is-active {
+    color: var(--accent);
+    background: var(--fill);
+  }
+  .tab__label {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .tab__label {
+    display: none;
+  }
+  .tab {
+    padding-block: 0.6rem;
+  }
+}
+
+/* En el modo exploración la navegación se oculta para dejar el 3D a pantalla completa. */
+:host-context(html.is-exploring) .topbar {
+  opacity: 0;
+  translate: 0 -120%;
+  pointer-events: none;
+}
+:host-context(html.is-exploring) .tabbar {
+  opacity: 0;
+  translate: -50% 150%;
+  pointer-events: none;
+}

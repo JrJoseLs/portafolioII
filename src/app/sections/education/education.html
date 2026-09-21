@@ -1,0 +1,59 @@
+<section id="education" class="section" tabindex="-1" aria-labelledby="education-title">
+  <div class="container">
+    <app-section-heading
+      icon="graduation-cap"
+      titleId="education-title"
+      [eyebrow]="t().education.eyebrow"
+      [title]="t().education.title"
+      [subtitle]="t().education.subtitle"
+    />
+
+    <div class="layout">
+      <div class="column">
+        <h3 class="column__title" appReveal>{{ t().education.degrees }}</h3>
+        @for (degree of degrees; track degree.id; let i = $index) {
+          <article class="degree card" appTilt="4" [appReveal]="i * 100">
+            <span class="degree__icon"><app-icon [name]="degree.icon" /></span>
+            <div>
+              <p class="degree__meta">{{ degree.period }} · {{ degree.location }}</p>
+              <h4 class="degree__title">{{ degree.title[i18n.lang()] }}</h4>
+              <p class="degree__school">{{ degree.school }}</p>
+              <p class="degree__description">{{ degree.description[i18n.lang()] }}</p>
+            </div>
+          </article>
+        }
+      </div>
+
+      <div class="column">
+        <h3 class="column__title" appReveal>{{ t().education.certs }}</h3>
+        <ul class="certs">
+          @for (cert of certifications; track $index) {
+            <li class="cert card" [appReveal]="$index * 80">
+              <span class="cert__icon"><app-icon [name]="cert.icon" /></span>
+              <span>
+                <strong>{{ cert.title[i18n.lang()] }}</strong>
+                <span>{{ cert.issuer }}</span>
+              </span>
+              <app-icon name="badge-check" class="cert__check" />
+            </li>
+          }
+        </ul>
+
+        <h3 class="column__title column__title--spaced" appReveal>{{ t().education.languages }}</h3>
+        <ul class="languages card" appReveal>
+          @for (language of languages; track $index) {
+            <li class="language">
+              <div class="language__row">
+                <strong>{{ language.name[i18n.lang()] }}</strong>
+                <span>{{ language.level[i18n.lang()] }}</span>
+              </div>
+              <div class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="language.value * 100" [attr.aria-label]="language.name[i18n.lang()]">
+                <span [style.--value]="language.value"></span>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

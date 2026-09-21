@@ -1,0 +1,142 @@
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.profile {
+  position: sticky;
+  top: 6.5rem;
+}
+
+.profile__card {
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.profile__photo {
+  position: relative;
+  width: 11rem;
+  aspect-ratio: 1;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  padding: 4px;
+  isolation: isolate;
+}
+/* Anillo con degradado que gira lentamente alrededor de la foto. */
+.profile__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(from var(--angle, 0deg), var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+  animation: spin-ring 6s linear infinite;
+}
+.profile__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  border: 4px solid var(--bg-elevated);
+}
+
+.profile__name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.profile__role {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.facts {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.85rem;
+  background: var(--fill);
+  font-size: 0.85rem;
+}
+.fact dt {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  white-space: nowrap;
+  --icon-size: 1rem;
+}
+.fact dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+.about__paragraph {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  color: var(--text-2);
+  max-width: 44rem;
+}
+.about__paragraph + .about__paragraph {
+  margin-top: 1rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.9rem;
+  margin-top: 2.5rem;
+  list-style: none;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.3rem;
+}
+.stat strong {
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.stat span {
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes spin-ring {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .profile {
+    position: static;
+    order: 2;
+  }
+  .profile__card {
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+}

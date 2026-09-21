@@ -1,0 +1,92 @@
+<section id="contact" class="section" tabindex="-1" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact card-glow" appReveal>
+      <div class="contact__intro">
+        <app-section-heading
+          icon="mail"
+          titleId="contact-title"
+          [eyebrow]="t().contact.eyebrow"
+          [title]="t().contact.title"
+          [subtitle]="t().contact.lead"
+        />
+
+        <div class="email glass" appReveal="120">
+          <a class="email__address" [href]="'mailto:' + profile.email">
+            <app-icon name="mail" />
+            {{ profile.email }}
+          </a>
+          <button type="button" class="btn btn--primary btn--sm" (click)="actions.copyEmail()">
+            <app-icon name="copy" />
+            {{ t().contact.copy }}
+          </button>
+        </div>
+
+        <ul class="channels">
+          @for (social of socials; track social.id; let i = $index) {
+            <li [appReveal]="160 + i * 60">
+              <a class="channel card" [href]="social.url" target="_blank" rel="noopener noreferrer" appTilt="8">
+                <span class="channel__icon" [attr.data-brand]="social.id"><app-icon [name]="social.icon" /></span>
+                <span class="channel__text">
+                  <strong>{{ social.label }}</strong>
+                  <span>{{ social.handle }}</span>
+                </span>
+                <app-icon name="arrow-up-right" class="channel__arrow" />
+              </a>
+            </li>
+          }
+        </ul>
+
+        <div class="downloads" appReveal="300">
+          <h3>{{ t().contact.downloads }}</h3>
+          <div class="downloads__list">
+            @for (cv of cvFiles; track cv.id) {
+              <a class="download card" [href]="cv.file" download>
+                <span class="download__icon"><app-icon name="file-text" /></span>
+                <span class="download__text">
+                  <strong>{{ cv.label[i18n.lang()] }}</strong>
+                  <span>{{ cv.description[i18n.lang()] }}</span>
+                </span>
+                <app-icon name="download" />
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <form class="form card" appReveal="200" (submit)="$event.preventDefault(); sendEmail()">
+        <h3 class="form__title"><app-icon name="send" />{{ t().contact.formTitle }}</h3>
+
+        <label class="field">
+          <span>{{ t().contact.name }}</span>
+          <input #nameInput type="text" name="name" autocomplete="name" maxlength="80" [value]="name()" (input)="name.set(nameInput.value)" />
+        </label>
+
+        <label class="field">
+          <span>{{ t().contact.message }}</span>
+          <textarea
+            #messageInput
+            name="message"
+            rows="5"
+            maxlength="1500"
+            required
+            [placeholder]="t().contact.messagePlaceholder"
+            [value]="message()"
+            (input)="message.set(messageInput.value)"
+          ></textarea>
+        </label>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary" [disabled]="!canSend()">
+            <app-icon name="mail" />
+            {{ t().contact.sendEmail }}
+          </button>
+          <button type="button" class="btn btn--glass" [disabled]="!canSend()" (click)="sendWhatsapp()">
+            <app-icon name="whatsapp" />
+            {{ t().contact.sendWhatsapp }}
+          </button>
+        </div>
+        <p class="form__hint">{{ t().contact.formHint }}</p>
+      </form>
+    </div>
+  </div>
+</section>

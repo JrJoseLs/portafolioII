@@ -1,0 +1,72 @@
+<header class="topbar">
+  <div class="dock glass">
+    <a class="brand" href="#home" (click)="go($event, 'home')" aria-label="José Luis Isabel Matos">
+      <span class="brand__mark">JL</span>
+    </a>
+
+    <nav class="links" [attr.aria-label]="t().a11y.mainNav">
+      @for (section of sections; track section.id) {
+        <a
+          class="link"
+          [href]="'#' + section.id"
+          [class.is-active]="spy.active() === section.id"
+          [attr.aria-current]="spy.active() === section.id ? 'location' : null"
+          (click)="go($event, section.id)"
+        >
+          <app-icon [name]="section.icon" />
+          <span>{{ section.label[i18n.lang()] }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="controls">
+      <button type="button" class="control control--search" [attr.aria-label]="t().a11y.search" (click)="openPalette()">
+        <app-icon name="search" />
+        <kbd>{{ isMac ? '⌘' : 'Ctrl' }} K</kbd>
+      </button>
+
+      <button
+        type="button"
+        class="control control--lang"
+        [attr.aria-label]="t().a11y.switchLang"
+        [title]="t().a11y.switchLang"
+        (click)="i18n.toggle()"
+      >
+        <span [class.is-on]="i18n.lang() === 'es'">ES</span>
+        <span [class.is-on]="i18n.lang() === 'en'">EN</span>
+      </button>
+
+      <button
+        type="button"
+        class="control control--theme"
+        [attr.aria-label]="themeLabel()"
+        [title]="themeLabel()"
+        (click)="toggleTheme($event)"
+      >
+        <span class="theme-icon" [class.is-dark]="theme.isDark()">
+          <app-icon name="sun" class="sun" />
+          <app-icon name="moon" class="moon" />
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Barra de pestañas inferior (solo móvil) -->
+<nav class="tabbar glass" [attr.aria-label]="t().a11y.mainNav">
+  @for (section of sections; track section.id) {
+    <a
+      class="tab"
+      [href]="'#' + section.id"
+      [class.is-active]="spy.active() === section.id"
+      [attr.aria-current]="spy.active() === section.id ? 'location' : null"
+      [attr.aria-label]="section.label[i18n.lang()]"
+      (click)="go($event, section.id)"
+    >
+      <app-icon [name]="section.icon" />
+      <span class="tab__label">{{ section.label[i18n.lang()] }}</span>
+    </a>
+  }
+</nav>
+
+<div class="scroll-progress" aria-hidden="true"></div>

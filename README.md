@@ -1,93 +1,177 @@
-# JPort — Portafolio de Jose Luis
+# JPort — Portafolio de José Luis Isabel Matos
 
-Portafolio personal de **Jose Luis Isabel Matos**, ingeniero de software. Es una
-aplicación de una sola página hecha con [Angular](https://angular.dev) y
-publicada en Firebase Hosting.
+Portafolio personal interactivo de **José Luis Isabel Matos**, ingeniero de
+software especializado en automatización de datos y operaciones técnicas.
 
-## Secciones
+🔗 **Sitio:** https://jrjosels.github.io/portafolioII/
 
-- **Home**: tarjeta de presentación con enlaces a LinkedIn, GitHub, correo y WhatsApp.
-- **Projects**: proyectos destacados con enlace a su demo.
-- **Resume (CV)**: educación y experiencia.
-- **Skills**: tecnologías que domino.
-- **Footer**: información de contacto y redes sociales.
+## Características
 
-La barra lateral permite navegar entre secciones y activar el **modo oscuro**.
+- **Escena 3D con Three.js**: miles de partículas que cambian de forma según la
+  sección (planeta, nudo, ADN, cubo, red, átomo y onda), reaccionan al ratón y
+  lanzan una onda expansiva al hacer clic en el fondo.
+- **Modo exploración 3D**: oculta el contenido para girar la figura, acercarla
+  y elegir entre 8 formas, incluida una galaxia.
+- **Buscador de comandos** (`Ctrl + K` / `⌘ + K`): navega por las secciones,
+  cambia el tema o el idioma, descarga el CV o copia el correo con el teclado.
+- **Tema claro y oscuro** con transición circular (View Transitions API). Sigue
+  el tema del sistema hasta que eliges uno.
+- **Español e inglés**, con detección del idioma del navegador.
+- **Diseño responsive**: barra flotante en escritorio y barra de pestañas
+  inferior tipo iOS en móvil.
+- **Accesible**: navegación por teclado, enlace para saltar al contenido,
+  etiquetas ARIA y respeto de `prefers-reduced-motion`.
+- **Rápido**: Three.js se carga de forma diferida (≈ 89 kB comprimidos en la
+  carga inicial) y la animación se pausa cuando la pestaña no está visible.
 
 ## Tecnologías
 
-| Herramienta | Versión |
+| Área | Herramienta |
 | --- | --- |
-| Angular (NgModules + zone.js) | 22 |
-| TypeScript | 6.0 |
-| Font Awesome (CDN) | 6.5 |
+| Framework | Angular 22 (componentes standalone, signals, sin zone.js) |
+| 3D | Three.js con shaders GLSL propios |
+| Lenguaje | TypeScript 6 (modo estricto) |
+| Estilos | CSS moderno: variables, `color-mix()`, scroll-driven animations |
+| Iconos | Lucide (interfaz), Simple Icons y Font Awesome (marcas) |
 | Pruebas | Karma + Jasmine |
-| Hosting | Firebase Hosting |
+| Despliegue | GitHub Pages con GitHub Actions |
 
 ## Requisitos
 
-- **Node.js** `^22.22.3`, `^24.15.0` o `>=26` (los que admite Angular 22)
+- **Node.js** `^22.22.3`, `^24.15.0` o `>=26`
 - **npm** 10 o superior
 - **Google Chrome**, solo para ejecutar las pruebas
-- **Firebase CLI** (`npm i -g firebase-tools`), solo para desplegar a mano
 
-## Instalación
+## Instalación y uso
 
 ```bash
 git clone https://github.com/JrJoseLs/portafolioII.git
 cd portafolioII
 npm ci
+npm start          # http://localhost:4200
 ```
-
-`npm ci` instala las versiones exactas de `package-lock.json`. Usa `npm install`
-solo cuando quieras añadir o actualizar dependencias.
-
-## Scripts
 
 | Comando | Qué hace |
 | --- | --- |
-| `npm start` | Levanta el servidor de desarrollo en `http://localhost:4200/` con recarga automática. |
-| `npm run build` | Genera el build de producción en `dist/j-port/`. |
-| `npm run watch` | Recompila en modo desarrollo cada vez que cambias un archivo. |
-| `npm test` | Ejecuta las pruebas unitarias con Karma (abre Chrome y queda en modo watch). |
-| `npm run test:ci` | Ejecuta las pruebas una sola vez en Chrome headless. |
-| `npm run deploy` | Compila y publica en Firebase Hosting (requiere Firebase CLI y `firebase login`). |
+| `npm start` | Servidor de desarrollo con recarga automática. |
+| `npm run build` | Build de producción en `dist/j-port/` (para servir desde la raíz de un dominio). |
+| `npm run build:gh-pages` | Build con `base-href` `/portafolioII/` para GitHub Pages. |
+| `npm test` | Pruebas unitarias en modo watch. |
+| `npm run test:ci` | Pruebas una sola vez en Chrome headless. |
+| `npm run deploy:firebase` | (Opcional) Publica en Firebase Hosting. |
 
 ## Estructura
 
 ```
+public/                       Archivos estáticos (se copian tal cual al build)
+├── cv/                       Currículums en PDF que se pueden descargar
+├── images/                   Foto de perfil, imagen para redes y capturas de proyectos
+└── favicon.svg
+
 src/
-├── app/
-│   ├── services/theme.service.ts   # Estado del modo oscuro
-│   └── ui/                         # Componentes de cada sección
-│       ├── sidebar/                # Navegación lateral + botón de tema
-│       ├── header/                 # Contenedor de las secciones
-│       ├── banner/                 # Home / presentación
-│       ├── projects/
-│       ├── cv/
-│       ├── skills/
-│       └── footer/
-├── assets/img/                     # Imágenes del sitio
-├── index.html
-└── styles.css                      # Estilos globales y modo oscuro
+├── index.html                SEO, Open Graph y script que aplica tema/idioma sin parpadeo
+├── styles.css                Sistema de diseño: colores, botones, tarjetas, utilidades
+└── app/
+    ├── app.ts / app.html     Estructura de la página y atajos de teclado
+    ├── data/                 ✏️ CONTENIDO DEL PORTAFOLIO (edita aquí)
+    │   ├── profile.ts        Nombre, contacto, redes y archivos de CV
+    │   ├── experience.ts     Experiencia laboral
+    │   ├── projects.ts       Proyectos destacados y secundarios
+    │   ├── skills.ts         Habilidades por categoría y cinta de logos
+    │   └── education.ts      Estudios, certificaciones e idiomas
+    ├── core/                 Lógica compartida
+    │   ├── i18n/             Idiomas y textos de la interfaz (ui-strings.ts)
+    │   ├── theme.service.ts  Tema claro/oscuro
+    │   ├── scroll-spy.service.ts  Sección activa y desplazamiento
+    │   ├── sections.ts       Orden de secciones y figura 3D de cada una
+    │   └── …
+    ├── sections/             Una carpeta por sección: hero, about, experience,
+    │                         projects, skills, education, contact
+    ├── layout/               Navegación, buscador de comandos, pie y avisos
+    ├── shared/               Icono, encabezado de sección, contador y directivas
+    │                         (appReveal: aparición al hacer scroll; appTilt: inclinación 3D)
+    └── three/                Escena 3D
+        ├── particle-scene.ts Componente que carga Three.js de forma diferida
+        ├── particle-engine.ts Motor: render, interacción y transiciones
+        ├── shaders.ts        Shaders GLSL de las partículas
+        ├── shapes.ts         Generadores matemáticos de las figuras
+        └── explore-hud.ts    Controles del modo exploración
 ```
 
-Para generar un componente nuevo: `npx ng generate component ui/nombre`. El
-proyecto usa NgModules, así que el CLI ya está configurado para crear
-componentes con `standalone: false` y hay que declararlos en `AppModule`.
+## Cómo editar el contenido
 
-## Despliegue
+Todo el contenido está en `src/app/data/`, separado del diseño. Cada texto
+visible se escribe en los dos idiomas:
 
-El despliegue es automático con GitHub Actions ([.github/workflows](.github/workflows)):
+```ts
+description: { es: 'Texto en español', en: 'English text' },
+```
 
-- **Push a `main`**: instala dependencias, compila y publica en el canal `live` de Firebase.
-- **Pull request**: publica una vista previa temporal y deja el enlace en el PR.
+### Añadir un proyecto
 
-Ambos flujos necesitan el secreto `FIREBASE_SERVICE_ACCOUNT_JL_PORT` en el
-repositorio. Firebase sirve la carpeta `dist/j-port` (ver [firebase.json](firebase.json)).
+1. Si tienes una captura, guárdala en `public/images/projects/` (WebP de
+   960×600 recomendado).
+2. Abre `src/app/data/projects.ts` y añade un objeto a `FEATURED_PROJECTS`
+   (tarjeta grande) o a `MORE_PROJECTS` (lista compacta):
+
+```ts
+{
+  id: 'mi-proyecto',
+  title: 'Mi proyecto',
+  description: { es: 'Qué hace…', en: 'What it does…' },
+  category: 'web',            // 'three' | 'web' | 'data'
+  year: 2026,
+  tags: ['Angular', 'Firebase'],
+  image: 'images/projects/mi-proyecto.webp',   // opcional
+  icon: 'rocket',             // se usa si no hay imagen
+  demo: 'https://…',          // opcional
+  code: 'https://github.com/JrJoseLs/…',       // opcional
+},
+```
+
+Los filtros y contadores se actualizan solos. Los iconos disponibles están en
+`src/app/shared/icon/icons.ts`.
+
+### Actualizar el CV
+
+Reemplaza los PDF de `public/cv/` manteniendo el nombre del archivo, o cambia
+las rutas en `CV_FILES` (`src/app/data/profile.ts`).
+
+### Textos de la interfaz
+
+Los botones, títulos y mensajes están en `src/app/core/i18n/ui-strings.ts`. Si
+añades un texto en español y olvidas su traducción al inglés, el proyecto no
+compila.
+
+## Despliegue en GitHub Pages
+
+El workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)
+ejecuta las pruebas, compila y publica en cada push a `main`. En los pull
+requests solo compila y prueba.
+
+**Configuración inicial (una sola vez):** en el repositorio de GitHub, ve a
+**Settings → Pages** y en **Source** elige **GitHub Actions**.
+
+### ¿GitHub Pages o Firebase Hosting?
+
+Este sitio es estático (no tiene backend ni base de datos), así que **GitHub
+Pages** es la opción más simple: es gratis, el código y el sitio viven en el
+mismo lugar y se publica solo con cada push. Firebase Hosting conviene si más
+adelante necesitas un dominio con cabeceras personalizadas, vistas previas por
+rama o servicios como autenticación y base de datos. La configuración de
+Firebase (`firebase.json`) se conserva por si quieres publicar ahí con
+`npm run deploy:firebase`.
+
+## Créditos
+
+- Iconos de interfaz: [Lucide](https://lucide.dev) (ISC).
+- Logos de marcas: [Simple Icons](https://simpleicons.org) (CC0) y
+  [Font Awesome Free](https://fontawesome.com) (CC BY 4.0) para LinkedIn.
+- Tipografía: [Inter](https://rsms.me/inter/) (en dispositivos Apple se usa SF Pro).
 
 ## Autor
 
-**Jose Luis Isabel Matos**
+**José Luis Isabel Matos** ·
 [LinkedIn](https://www.linkedin.com/in/jose-luis-isabel-matos-a03840238/) ·
-[GitHub](https://github.com/JrJoseLs)
+[GitHub](https://github.com/JrJoseLs) ·
+[junior_er@hotmail.es](mailto:junior_er@hotmail.es)

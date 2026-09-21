@@ -1,0 +1,59 @@
+<section id="about" class="section" tabindex="-1" aria-labelledby="about-title">
+  <div class="container about">
+    <div class="profile" appReveal>
+      <article class="profile__card card" appTilt="5">
+        <div class="profile__photo">
+          <img [src]="profile.photo" [alt]="t().a11y.photo" width="480" height="480" loading="lazy" decoding="async" />
+        </div>
+        <h3 class="profile__name">{{ profile.name }}</h3>
+        <p class="profile__role">{{ profile.headline[i18n.lang()] }}</p>
+
+        <dl class="facts">
+          <div class="fact">
+            <dt><app-icon name="map-pin" />{{ t().about.facts.location }}</dt>
+            <dd>{{ t().about.facts.locationValue }}</dd>
+          </div>
+          <div class="fact">
+            <dt><app-icon name="laptop" />{{ t().about.facts.mode }}</dt>
+            <dd>{{ t().about.facts.modeValue }}</dd>
+          </div>
+          <div class="fact">
+            <dt><app-icon name="graduation-cap" />{{ t().about.facts.degree }}</dt>
+            <dd>{{ t().about.facts.degreeValue }}</dd>
+          </div>
+          <div class="fact">
+            <dt><app-icon name="languages" />{{ t().about.facts.languages }}</dt>
+            <dd>{{ t().about.facts.languagesValue }}</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="about__text">
+      <app-section-heading icon="user" titleId="about-title" [eyebrow]="t().about.eyebrow" [title]="t().about.title" />
+
+      @for (paragraph of t().about.paragraphs; track $index) {
+        <p class="about__paragraph" [appReveal]="$index * 80">{{ paragraph }}</p>
+      }
+
+      <ul class="stats">
+        <li class="stat card" appReveal="0">
+          <strong class="gradient-text"><app-count-up [value]="years" suffix="+" /></strong>
+          <span>{{ t().about.stats.years }}</span>
+        </li>
+        <li class="stat card" appReveal="80">
+          <strong class="gradient-text"><app-count-up [value]="profile.publicRepos" suffix="+" /></strong>
+          <span>{{ t().about.stats.repos }}</span>
+        </li>
+        <li class="stat card" appReveal="160">
+          <strong class="gradient-text"><app-count-up [value]="featuredCount" /></strong>
+          <span>{{ t().about.stats.projects }}</span>
+        </li>
+        <li class="stat card" appReveal="240">
+          <strong class="gradient-text"><app-count-up [value]="20" prefix="+" suffix="%" /></strong>
+          <span>{{ t().about.stats.productivity }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

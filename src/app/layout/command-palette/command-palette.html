@@ -1,0 +1,50 @@
+<dialog #dialog class="palette" [attr.aria-label]="t().a11y.search" (close)="close()" (click)="onDialogClick($event)">
+  <div class="panel glass-strong">
+    <div class="search">
+      <app-icon name="search" />
+      <input
+        #input
+        type="search"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="palette-list"
+        autocomplete="off"
+        spellcheck="false"
+        [attr.aria-activedescendant]="results().length ? 'cmd-' + results()[activeIndex()].id : null"
+        [placeholder]="t().palette.placeholder"
+        [value]="query()"
+        (input)="onSearch(input.value)"
+        (keydown)="onKeydown($event)"
+      />
+      <kbd>Esc</kbd>
+    </div>
+
+    <div #list id="palette-list" class="results" role="listbox">
+      @for (group of groups(); track group.id) {
+        <div class="group" role="group" [attr.aria-label]="group.title">
+          <p class="group__title">{{ group.title }}</p>
+          @for (item of group.items; track item.command.id) {
+            <button
+              type="button"
+              role="option"
+              class="item"
+              tabindex="-1"
+              [id]="'cmd-' + item.command.id"
+              [attr.aria-selected]="item.index === activeIndex()"
+              (mousemove)="activeIndex.set(item.index)"
+              (click)="execute(item.command)"
+            >
+              <span class="item__icon"><app-icon [name]="item.command.icon" /></span>
+              <span class="item__label">{{ item.command.label }}</span>
+              <app-icon name="chevron-right" class="item__arrow" />
+            </button>
+          }
+        </div>
+      } @empty {
+        <p class="empty">{{ t().palette.empty }}</p>
+      }
+    </div>
+
+    <p class="hint">{{ t().palette.hint }}</p>
+  </div>
+</dialog>

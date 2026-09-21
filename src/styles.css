@@ -1,150 +1,535 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* ==========================================================================
+   Sistema de diseño global
+   - Tokens de color para tema claro y oscuro (paleta de sistema de Apple).
+   - Utilidades compartidas: contenedor, vidrio, tarjetas, botones, chips…
+   Los estilos propios de cada componente viven junto a él.
+   ========================================================================== */
 
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 
-* {
+  --container: 72rem;
+  --radius: 1.4rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Tema claro */
+  --bg: #f5f5f7;
+  --bg-elevated: #ffffff;
+  --surface: rgb(255 255 255 / 0.62);
+  --surface-strong: rgb(255 255 255 / 0.86);
+  --fill: rgb(0 0 0 / 0.045);
+  --fill-strong: rgb(0 0 0 / 0.08);
+  --border: rgb(0 0 0 / 0.08);
+  --border-strong: rgb(0 0 0 / 0.14);
+  --text: #1d1d1f;
+  --text-2: #424245;
+  --muted: #6e6e73;
+  --accent: #0071e3;
+  --accent-2: #5e5ce6;
+  --accent-3: #ff375f;
+  --success: #248a3d;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 8px rgb(0 0 0 / 0.05);
+  --shadow: 0 10px 40px -12px rgb(0 0 0 / 0.18);
+  --glow: rgb(0 113 227 / 0.14);
+
+  --gradient: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #000000;
+  --bg-elevated: #1c1c1e;
+  --surface: rgb(28 28 30 / 0.55);
+  --surface-strong: rgb(44 44 46 / 0.72);
+  --fill: rgb(255 255 255 / 0.06);
+  --fill-strong: rgb(255 255 255 / 0.11);
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --text: #f5f5f7;
+  --text-2: #c7c7cc;
+  --muted: #8e8e93;
+  --accent: #2997ff;
+  --accent-2: #7d7aff;
+  --accent-3: #ff4f9a;
+  --success: #30d158;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow: 0 20px 50px -20px rgb(0 0 0 / 0.8);
+  --glow: rgb(41 151 255 / 0.18);
+  color-scheme: dark;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+  scrollbar-gutter: stable;
 }
 
 body {
-  justify-content: center;
+  min-height: 100svh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  transition: background-color 0.4s ease;
+}
+
+/* Halo de color muy suave detrás de todo (y respaldo si no hay WebGL). */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 70%),
+    radial-gradient(50rem 40rem at -10% 110%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+kbd {
+  display: inline-flex;
   align-items: center;
-
-  gap: 50px;
-
-  /* background: #444; */
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border-strong);
+  background: var(--fill);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
-/*  */
-:root {
-  --bg: #444;
-  --prub: #fff;
-  --main: #4fc3dc;
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
-/*DARK-MODE*/
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
 
-section {
+/* ---------- Estructura ---------- */
+.main {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  z-index: 1;
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease;
+}
+app-footer {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(5rem, 11vw, 8.5rem);
+}
+section:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* Modo exploración 3D: el contenido se desvanece y el 3D ocupa toda la pantalla. */
+html.is-exploring {
+  overflow: hidden;
+  touch-action: none;
+}
+html.is-exploring .main,
+html.is-exploring app-footer {
+  opacity: 0;
+  filter: blur(8px);
+  pointer-events: none;
+}
+html.is-exploring body {
+  user-select: none;
+}
+
+/* ---------- Superficies ---------- */
+.glass,
+.glass-strong {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: var(--shadow-sm);
+}
+.glass-strong {
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.card {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: saturate(160%) blur(18px);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tarjeta de contacto con borde degradado. */
+.card-glow {
+  position: relative;
+  background: var(--surface);
+  backdrop-filter: saturate(160%) blur(22px);
+  -webkit-backdrop-filter: saturate(160%) blur(22px);
+  box-shadow: var(--shadow);
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 60%, transparent), transparent 40%, transparent 60%, color-mix(in srgb, var(--accent-3) 60%, transparent));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Inclinación 3D + foco de luz (directiva appTilt). */
+.tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  will-change: transform;
+}
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(28rem circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 45%);
+  transition: opacity 0.35s ease;
+}
+.tilt:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+.tilt:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Tipografía ---------- */
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  display: inline-flex;
   align-items: center;
-  /* font-size: 6em;
-    font-weight: 800; */
-  /* color: rgba(255, 255, 255, 0.1); */
-  /* background: #333; */
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  --icon-size: 0.95rem;
+}
 
-  /* background-color: #ffffff; */
-  background-color: #e8e8e8;
-  /* text-transform: uppercase; */
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.9rem;
+  padding: 0 1.35rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    transform 0.25s var(--ease-spring),
+    background-color 0.2s ease,
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+  --icon-size: 1.1rem;
+}
+.btn:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+.btn:not(:disabled):active {
+  transform: scale(0.97);
+}
+.btn--sm {
+  min-height: 2.4rem;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+  --icon-size: 1rem;
+}
+.btn--primary {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.btn--primary:not(:disabled):hover {
+  box-shadow: 0 12px 30px -8px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+.btn--glass {
+  color: var(--text);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.btn--glass:not(:disabled):hover {
+  border-color: var(--border-strong);
+}
+.btn--ghost {
+  color: var(--text);
+  border: 1px dashed var(--border-strong);
+}
+.btn--ghost:not(:disabled):hover {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--accent);
+}
 
-  /* background-color: #e8e8e8; */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--text-2);
+  transition:
+    color 0.2s ease,
+    transform 0.25s var(--ease-spring),
+    background-color 0.2s ease;
+  --icon-size: 1.2rem;
+}
+.icon-btn:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
 
+/* ---------- Chips, etiquetas y controles segmentados ---------- */
+.tags {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+}
+.tag {
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--fill);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-2);
 }
 
-section:nth-child(even) {
-  /* background: #444; */
-  /* background-color: #e4e4e4; */
+.chip {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-2);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
-
-section:nth-child(3) {
-  height: 100%;
+.chip:hover {
+  background: var(--fill);
+  color: var(--text);
 }
-
-section:nth-child(4) {
-  height: 100%;
-}
-
-section:nth-child(5) {
-  height: 100%;
-}
-
-section:nth-child(6) {
-  height: 100%;
-}
-
-section:nth-child(7) {
-  height: 100%;
-
-}
-
-/* Estilos para el modo oscuro */
-/*SIDEBAR*/
-
-.icon {
-  color: #333;
-}
-/*BANNER*/
-.navigation li a {
-  color: #333;
-}
-/*Projects*/
-.card__description {
-  color: #111;
-}
-/*Footer*/
-footer .container .quicklinks ul li a {
-  color: #555;
-}
-/*DARK*/
-.dark-mode {
-  background-color: #444;
+.chip.is-active {
+  background: var(--accent);
   color: #fff;
+}
 
-  .icon {
-    color: #fff;
-  }
-  .card {
-    background-color: #333;
-    color: #fff;
-  }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--fill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-2);
+  --icon-size: 0.85rem;
+}
+.badge--live {
+  background: color-mix(in srgb, var(--success) 16%, transparent);
+  color: var(--success);
+}
 
-  .navigation li a {
-    color: #fff;
-  }
-
-  .card .content h2 {
-    color: #fff;
-  }
-
-  footer .container .quicklinks ul li a {
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+}
+.segmented__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-2);
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.2s ease,
+    box-shadow 0.3s ease;
+}
+.segmented__option:hover {
+  color: var(--text);
+}
+.segmented__option.is-active {
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+.segmented__count {
+  min-width: 1.4rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--fill-strong);
+  font-size: 0.72rem;
+  text-align: center;
+}
+.segmented__option.is-active .segmented__count {
+  background: var(--accent);
   color: #fff;
-  }
-    footer .container .contact .info li span i {
-      color: #fff;
-    }
 }
 
+/* ---------- Aparición al hacer scroll (directiva appReveal) ---------- */
+.reveal {
+  opacity: 0;
+  translate: 0 1.75rem;
+  transition:
+    opacity 0.9s var(--ease-out),
+    translate 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  translate: none;
+}
 
-/*=============== RESPONSIVE ===============*/
-/* For small devices */
-@media screen and (max-width: 340px) {
-  body {
-    scroll-behavior: none;
+/* ---------- Transición circular al cambiar de tema (View Transitions API) ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    translate: none;
+  }
+  .tilt {
+    transform: none;
   }
 }
 
-/* For medium devices */
-@media screen and (min-width: 600px) {
-  @media screen and (max-width: 768px) {
-    body {
-      scroll-behavior: none;
-    }
-  }
-}
-
-/* For large devices */
-@media screen and (min-width: 1120px) {
-  body {
-    scroll-behavior: none;
+@media (max-width: 860px) {
+  .container {
+    width: min(100% - 2rem, var(--container));
   }
 }

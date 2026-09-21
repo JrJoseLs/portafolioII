@@ -1,0 +1,68 @@
+<section id="home" class="hero" tabindex="-1" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="pill glass" appReveal>
+        <span class="pill__dot" aria-hidden="true"></span>
+        {{ t().hero.location }}
+      </p>
+
+      <h1 id="hero-title" class="hero__title" appReveal="100">
+        <span class="hero__greeting">{{ t().hero.greeting }}</span>
+        <span class="hero__name">{{ profile.firstName }}</span>
+        <span class="hero__name gradient-text">{{ profile.lastName }}</span>
+      </h1>
+
+      <p class="hero__role" appReveal="200" aria-live="off">
+        <app-icon name="sparkles" />
+        <span class="hero__typed">{{ typed() }}</span>
+        <span class="hero__caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__lead" appReveal="300">{{ t().hero.lead }}</p>
+
+      <div class="hero__actions" appReveal="400">
+        <a class="btn btn--primary" href="#projects" (click)="$event.preventDefault(); spy.scrollTo('projects')">
+          {{ t().hero.ctaProjects }}
+          <app-icon name="arrow-down" />
+        </a>
+        <a class="btn btn--glass" [href]="cv.file" download>
+          <app-icon name="download" />
+          {{ t().hero.ctaCv }}
+        </a>
+        @if (scene.available()) {
+          <button type="button" class="btn btn--ghost" (click)="scene.enterExplore()">
+            <app-icon name="move-3d" />
+            {{ t().hero.ctaExplore }}
+          </button>
+        }
+      </div>
+
+      <ul class="hero__socials" appReveal="500">
+        @for (social of socials; track social.id) {
+          <li>
+            <a class="icon-btn glass" [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.label" [title]="social.label">
+              <app-icon [name]="social.icon" />
+            </a>
+          </li>
+        }
+        <li>
+          <a class="icon-btn glass" [href]="emailHref" aria-label="Email" title="Email">
+            <app-icon name="mail" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  @if (scene.available()) {
+    <p class="hero__hint" appReveal="900">
+      <app-icon name="pointer" />
+      {{ t().hero.hint }}
+    </p>
+  }
+
+  <a class="scroll-cue" href="#about" (click)="$event.preventDefault(); spy.scrollTo('about')">
+    <span class="scroll-cue__mouse" aria-hidden="true"><span></span></span>
+    {{ t().hero.scroll }}
+  </a>
+</section>

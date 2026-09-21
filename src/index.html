@@ -1,25 +1,72 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <title>PORTAFOLIO | JOSE</title>
+  <title>José Luis Isabel Matos · Software Engineer</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/4341/4341048.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Portafolio de José Luis Isabel Matos, ingeniero de software especializado en automatización de datos, operaciones técnicas y desarrollo web con experiencias 3D.">
+  <meta name="author" content="José Luis Isabel Matos">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Open Graph / redes sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="José Luis Isabel Matos · Software Engineer">
+  <meta property="og:description" content="Automatización de datos, operaciones técnicas y desarrollo web con experiencias 3D.">
+  <meta property="og:url" content="https://jrjosels.github.io/portafolioII/">
+  <meta property="og:image" content="https://jrjosels.github.io/portafolioII/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="images/profile.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap">
+
+  <!-- Aplica tema e idioma guardados antes de pintar para evitar parpadeos. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+      var theme = read('jl.theme');
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      var lang = read('jl.lang');
+      if (lang !== 'es' && lang !== 'en') {
+        lang = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+      }
+      root.setAttribute('data-theme', theme);
+      root.setAttribute('lang', lang);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "José Luis Isabel Matos",
+    "jobTitle": "Software Engineer",
+    "url": "https://jrjosels.github.io/portafolioII/",
+    "email": "mailto:junior_er@hotmail.es",
+    "address": { "@type": "PostalAddress", "addressLocality": "Santo Domingo", "addressCountry": "DO" },
+    "alumniOf": "Universidad APEC (UNAPEC)",
+    "sameAs": [
+      "https://github.com/JrJoseLs",
+      "https://www.linkedin.com/in/jose-luis-isabel-matos-a03840238/"
+    ]
+  }
+  </script>
 </head>
 <body>
   <app-root></app-root>
-
-
-
-    <!-- <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js"></script>
-    <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js"></script> -->
+  <noscript>
+    <p style="padding:2rem;font-family:system-ui,sans-serif">
+      Este portafolio necesita JavaScript. / This portfolio requires JavaScript.
+    </p>
+  </noscript>
 </body>
 </html>
