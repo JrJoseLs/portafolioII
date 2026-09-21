@@ -39,6 +39,7 @@
 }
 
 .curriculum .fila .col {
+  flex: 1 1 0;
   width: 49%;
   padding: 0 20px;
 }
