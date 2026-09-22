@@ -150,7 +150,13 @@ ejecuta las pruebas, compila y publica en cada push a `main`. En los pull
 requests solo compila y prueba.
 
 **Configuración inicial (una sola vez):** en el repositorio de GitHub, ve a
-**Settings → Pages** y en **Source** elige **GitHub Actions**.
+**Settings → Pages → Build and deployment** y en **Source** elige
+**GitHub Actions**.
+
+> Si el sitio muestra este README en lugar del portafolio, **Source** sigue en
+> "Deploy from a branch": GitHub está publicando el README con Jekyll y el
+> workflow falla al desplegar con un error 404. Cámbialo a "GitHub Actions" y
+> vuelve a ejecutar el workflow desde la pestaña **Actions**.
 
 ### ¿GitHub Pages o Firebase Hosting?
 

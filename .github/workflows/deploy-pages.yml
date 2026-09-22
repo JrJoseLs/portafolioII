@@ -1,5 +1,7 @@
 # Compila, prueba y publica el portafolio en GitHub Pages en cada push a main.
-# Requisito (una sola vez): Settings → Pages → Source: "GitHub Actions".
+# Requisito (una sola vez): Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# Si Source queda en "Deploy from a branch", GitHub publica el README con Jekyll
+# y el paso "deploy" falla con un error 404.
 name: Deploy to GitHub Pages
 
 on:
@@ -22,9 +24,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -37,7 +39,7 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build:gh-pages
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/j-port
 
@@ -51,4 +53,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
