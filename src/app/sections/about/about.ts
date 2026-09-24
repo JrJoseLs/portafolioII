@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { ContentService } from '../../core/content.service';
 import { monthsBetween } from '../../core/format';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { EXPERIENCE } from '../../data/experience';
@@ -20,6 +21,7 @@ import { Tilt } from '../../shared/tilt/tilt';
 })
 export class About {
   protected readonly i18n = inject(I18nService);
+  protected readonly content = inject(ContentService);
   protected readonly t = this.i18n.t;
   protected readonly profile = PROFILE;
 

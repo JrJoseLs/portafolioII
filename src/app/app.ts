@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, inject, signal } from '@angular/core';
 
+import { AdminPanel } from './admin/admin-panel';
 import { I18nService } from './core/i18n/i18n.service';
 import { PortfolioActionsService } from './core/portfolio-actions.service';
 import { SceneService } from './core/scene.service';
@@ -23,6 +24,7 @@ import { ParticleScene } from './three/particle-scene';
   selector: 'app-root',
   imports: [
     About,
+    AdminPanel,
     CommandPalette,
     Contact,
     Education,
@@ -37,7 +39,10 @@ import { ParticleScene } from './three/particle-scene';
     Toast,
   ],
   templateUrl: './app.html',
-  host: { '(document:keydown)': 'onKeydown($event)' },
+  host: {
+    '(document:keydown)': 'onKeydown($event)',
+    '(window:hashchange)': 'syncAdmin()',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
@@ -46,9 +51,21 @@ export class App {
   private readonly scene = inject(SceneService);
   private readonly spy = inject(ScrollSpyService);
 
+  /** El panel de edición se abre añadiendo #admin a la dirección. */
+  protected readonly adminOpen = signal(isAdminHash());
+
   constructor() {
     afterNextRender(() => this.spy.start());
     inject(DestroyRef).onDestroy(() => this.spy.stop());
+  }
+
+  protected syncAdmin(): void {
+    this.adminOpen.set(isAdminHash());
+  }
+
+  protected closeAdmin(): void {
+    this.adminOpen.set(false);
+    history.replaceState(null, '', location.pathname + location.search);
   }
 
   protected onKeydown(event: KeyboardEvent): void {
@@ -64,4 +81,8 @@ export class App {
     event.preventDefault();
     this.spy.scrollTo('about');
   }
+}
+
+function isAdminHash(): boolean {
+  return typeof location !== 'undefined' && location.hash === '#admin';
 }

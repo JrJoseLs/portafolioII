@@ -3,13 +3,15 @@
     <div class="hero__content">
       <p class="pill glass" appReveal>
         <span class="pill__dot" aria-hidden="true"></span>
-        {{ t().hero.location }}
+        {{ content.location() }}
       </p>
 
       <h1 id="hero-title" class="hero__title" appReveal="100">
         <span class="hero__greeting">{{ t().hero.greeting }}</span>
-        <span class="hero__name">{{ profile.firstName }}</span>
-        <span class="hero__name gradient-text">{{ profile.lastName }}</span>
+        <span class="hero__name">{{ content.nameParts().first }}</span>
+        @if (content.nameParts().rest) {
+          <span class="hero__name gradient-text">{{ content.nameParts().rest }}</span>
+        }
       </h1>
 
       <p class="hero__role" appReveal="200" aria-live="off">
@@ -25,9 +27,10 @@
           {{ t().hero.ctaProjects }}
           <app-icon name="arrow-down" />
         </a>
-        <a class="btn btn--glass" [href]="cv.file" download>
-          <app-icon name="download" />
+        <a class="btn btn--glass" [href]="content.cvUrl()" target="_blank" rel="noopener noreferrer">
+          <app-icon name="file-text" />
           {{ t().hero.ctaCv }}
+          <app-icon name="arrow-up-right" />
         </a>
         @if (scene.available()) {
           <button type="button" class="btn btn--ghost" (click)="scene.enterExplore()">
@@ -38,7 +41,7 @@
       </div>
 
       <ul class="hero__socials" appReveal="500">
-        @for (social of socials; track social.id) {
+        @for (social of content.socials(); track social.id) {
           <li>
             <a class="icon-btn glass" [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.label" [title]="social.label">
               <app-icon [name]="social.icon" />
@@ -46,7 +49,7 @@
           </li>
         }
         <li>
-          <a class="icon-btn glass" [href]="emailHref" aria-label="Email" title="Email">
+          <a class="icon-btn glass" [href]="emailHref()" aria-label="Email" title="Email">
             <app-icon name="mail" />
           </a>
         </li>

@@ -26,6 +26,7 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
     },
     skills: [
       { name: 'Google Apps Script', icon: 'apps-script' },
+      { name: 'Python', icon: 'terminal' },
       { name: 'Google Sheets', icon: 'google-sheets' },
       { name: 'Excel', icon: 'table' },
       { name: 'Tableau Public', icon: 'chart' },
@@ -130,6 +131,7 @@ export const STACK_MARQUEE: readonly Skill[] = [
   { name: 'Node.js', icon: 'nodejs' },
   { name: 'NestJS', icon: 'nestjs' },
   { name: 'Apps Script', icon: 'apps-script' },
+  { name: 'Python', icon: 'terminal' },
   { name: 'Google Sheets', icon: 'google-sheets' },
   { name: 'MySQL', icon: 'mysql' },
   { name: 'Firebase', icon: 'firebase' },

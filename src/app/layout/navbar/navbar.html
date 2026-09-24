@@ -1,6 +1,6 @@
 <header class="topbar">
   <div class="dock glass">
-    <a class="brand" href="#home" (click)="go($event, 'home')" aria-label="José Luis Isabel Matos">
+    <a class="brand" href="#home" (click)="go($event, 'home')" [attr.aria-label]="content.name()">
       <span class="brand__mark">JL</span>
     </a>
 

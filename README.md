@@ -1,7 +1,7 @@
-# JPort — Portafolio de José Luis Isabel Matos
+# JPort — Portafolio de Jose Matos
 
-Portafolio personal interactivo de **José Luis Isabel Matos**, ingeniero de
-software especializado en automatización de datos y operaciones técnicas.
+Portafolio personal interactivo de **Jose Matos**, ingeniero de software
+especializado en automatización de datos y operaciones técnicas.
 
 🔗 **Sitio:** https://jrjosels.github.io/portafolioII/
 
@@ -21,6 +21,8 @@ software especializado en automatización de datos y operaciones técnicas.
   inferior tipo iOS en móvil.
 - **Accesible**: navegación por teclado, enlace para saltar al contenido,
   etiquetas ARIA y respeto de `prefers-reduced-motion`.
+- **Panel de edición privado** (`#admin`): cambia la foto, los textos y los
+  enlaces del sitio sin tocar código.
 - **Rápido**: Three.js se carga de forma diferida (≈ 89 kB comprimidos en la
   carga inicial) y la animación se pausa cuando la pestaña no está visible.
 
@@ -64,7 +66,7 @@ npm start          # http://localhost:4200
 
 ```
 public/                       Archivos estáticos (se copian tal cual al build)
-├── cv/                       Currículums en PDF que se pueden descargar
+├── content.json              Cambios hechos desde el panel de edición
 ├── images/                   Foto de perfil, imagen para redes y capturas de proyectos
 └── favicon.svg
 
@@ -73,6 +75,7 @@ src/
 ├── styles.css                Sistema de diseño: colores, botones, tarjetas, utilidades
 └── app/
     ├── app.ts / app.html     Estructura de la página y atajos de teclado
+    ├── admin/                Panel de edición privado (#admin)
     ├── data/                 ✏️ CONTENIDO DEL PORTAFOLIO (edita aquí)
     │   ├── profile.ts        Nombre, contacto, redes y archivos de CV
     │   ├── experience.ts     Experiencia laboral
@@ -134,14 +137,45 @@ Los filtros y contadores se actualizan solos. Los iconos disponibles están en
 
 ### Actualizar el CV
 
-Reemplaza los PDF de `public/cv/` manteniendo el nombre del archivo, o cambia
-las rutas en `CV_FILES` (`src/app/data/profile.ts`).
+El CV no se descarga desde el sitio: el botón abre un enlace de Google Drive en
+modo lectura. Para cambiarlo, usa el panel de edición o edita `cvUrl` en
+`src/app/data/profile.ts`. En Drive, comparte el archivo como
+**"Cualquier persona con el enlace · Lector"**.
+
+### Cambiar la foto
+
+Dos formas, la que prefieras:
+
+1. **Desde el panel de edición** (`#admin`): eliges la imagen, se recorta sola a
+   512×512 y se guarda dentro de `content.json`.
+2. **Reemplazando el archivo**: guarda tu foto como `public/images/profile.webp`
+   (cuadrada, 512×512 recomendado).
 
 ### Textos de la interfaz
 
 Los botones, títulos y mensajes están en `src/app/core/i18n/ui-strings.ts`. Si
 añades un texto en español y olvidas su traducción al inglés, el proyecto no
 compila.
+
+## Panel de edición (`#admin`)
+
+Añade `#admin` a la dirección del sitio
+(`https://jrjosels.github.io/portafolioII/#admin`) y se abre un panel privado
+para cambiar la foto, el nombre, el cargo, la ubicación, el correo, el enlace
+del CV, los textos de "Sobre mí" y los enlaces de redes.
+
+Como el sitio es estático (sin servidor ni base de datos), el panel funciona así:
+
+1. **Guardar** aplica los cambios al instante y los recuerda **en tu navegador**.
+2. **Descargar content.json** genera el archivo con esos cambios.
+3. Guarda ese archivo en `public/content.json`, haz commit y push: así quedan
+   publicados para todo el mundo.
+4. **Restablecer** descarta lo que tengas guardado en el navegador.
+
+> El panel no tiene contraseña a propósito: en un sitio estático cualquier clave
+> sería visible en el código y daría una falsa sensación de seguridad. No expone
+> nada, porque solo edita información que ya es pública, y nadie más que tú puede
+> publicar cambios: para eso hace falta acceso al repositorio.
 
 ## Despliegue en GitHub Pages
 
@@ -177,7 +211,7 @@ Firebase (`firebase.json`) se conserva por si quieres publicar ahí con
 
 ## Autor
 
-**José Luis Isabel Matos** ·
+**Jose Matos** ·
 [LinkedIn](https://www.linkedin.com/in/jose-luis-isabel-matos-a03840238/) ·
 [GitHub](https://github.com/JrJoseLs) ·
 [junior_er@hotmail.es](mailto:junior_er@hotmail.es)

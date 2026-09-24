@@ -48,8 +48,8 @@ export const EXPERIENCE: readonly Experience[] = [
         title: { es: 'Qué hago', en: 'What I do' },
         items: [
           {
-            es: 'Extracción y procesamiento automatizado de datos con Google Apps Script.',
-            en: 'Automated data extraction and processing with Google Apps Script.',
+            es: 'Extracción y procesamiento automatizado de datos con Google Apps Script y Python.',
+            en: 'Automated data extraction and processing with Google Apps Script and Python.',
           },
           {
             es: 'Creación de modelos de datos en Excel y Google Sheets.',
@@ -70,7 +70,7 @@ export const EXPERIENCE: readonly Experience[] = [
         ],
       },
     ],
-    tags: ['Google Apps Script', 'Google Sheets', 'Excel', 'Tableau', 'Data Cleaning', 'Reporting'],
+    tags: ['Google Apps Script', 'Python', 'Google Sheets', 'Excel', 'Tableau', 'Data Cleaning', 'Reporting'],
   },
   {
     id: 'inoa',

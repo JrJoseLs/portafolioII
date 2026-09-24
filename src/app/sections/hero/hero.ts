@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
 
+import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { MotionService } from '../../core/motion.service';
 import { SceneService } from '../../core/scene.service';
 import { ScrollSpyService } from '../../core/scroll-spy.service';
-import { CV_FILES, PROFILE, SOCIAL_LINKS } from '../../data/profile';
 import { Icon } from '../../shared/icon/icon';
 import { Reveal } from '../../shared/reveal/reveal';
 
@@ -19,13 +19,11 @@ export class Hero {
   protected readonly i18n = inject(I18nService);
   protected readonly scene = inject(SceneService);
   protected readonly spy = inject(ScrollSpyService);
+  protected readonly content = inject(ContentService);
   private readonly motion = inject(MotionService);
 
   protected readonly t = this.i18n.t;
-  protected readonly profile = PROFILE;
-  protected readonly socials = SOCIAL_LINKS;
-  protected readonly cv = CV_FILES[0];
-  protected readonly emailHref = `mailto:${PROFILE.email}`;
+  protected readonly emailHref = computed(() => `mailto:${this.content.email()}`);
 
   /** Texto del rol que se "escribe" letra a letra. */
   protected readonly typed = signal('');

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
+import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { PortfolioActionsService } from '../../core/portfolio-actions.service';
 import { ScrollSpyService } from '../../core/scroll-spy.service';
-import { PROFILE, SOCIAL_LINKS } from '../../data/profile';
 import { Icon } from '../../shared/icon/icon';
 
 @Component({
@@ -15,7 +15,7 @@ import { Icon } from '../../shared/icon/icon';
         <div class="footer__brand">
           <span class="footer__mark gradient-text">JL</span>
           <div>
-            <p class="footer__name">{{ profile.name }}</p>
+            <p class="footer__name">{{ content.name() }}</p>
             <p class="footer__made">{{ t().footer.made }}</p>
           </div>
         </div>
@@ -27,7 +27,7 @@ import { Icon } from '../../shared/icon/icon';
 
         <div class="footer__end">
           <ul class="footer__socials">
-            @for (social of socials; track social.id) {
+            @for (social of content.socials(); track social.id) {
               <li>
                 <a class="icon-btn" [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.label">
                   <app-icon [name]="social.icon" />
@@ -40,7 +40,7 @@ import { Icon } from '../../shared/icon/icon';
           </button>
         </div>
       </div>
-      <p class="footer__copy">© {{ year }} {{ profile.name }}</p>
+      <p class="footer__copy">© {{ year }} {{ content.name() }}</p>
     </footer>
   `,
   styles: `
@@ -122,8 +122,7 @@ export class Footer {
   protected readonly t = inject(I18nService).t;
   protected readonly actions = inject(PortfolioActionsService);
   protected readonly spy = inject(ScrollSpyService);
-  protected readonly profile = PROFILE;
-  protected readonly socials = SOCIAL_LINKS;
+  protected readonly content = inject(ContentService);
   protected readonly year = new Date().getFullYear();
 
   private readonly isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform);

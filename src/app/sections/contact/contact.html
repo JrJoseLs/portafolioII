@@ -11,9 +11,9 @@
         />
 
         <div class="email glass" appReveal="120">
-          <a class="email__address" [href]="'mailto:' + profile.email">
+          <a class="email__address" [href]="'mailto:' + content.email()">
             <app-icon name="mail" />
-            {{ profile.email }}
+            {{ content.email() }}
           </a>
           <button type="button" class="btn btn--primary btn--sm" (click)="actions.copyEmail()">
             <app-icon name="copy" />
@@ -22,7 +22,7 @@
         </div>
 
         <ul class="channels">
-          @for (social of socials; track social.id; let i = $index) {
+          @for (social of content.socials(); track social.id; let i = $index) {
             <li [appReveal]="160 + i * 60">
               <a class="channel card" [href]="social.url" target="_blank" rel="noopener noreferrer" appTilt="8">
                 <span class="channel__icon" [attr.data-brand]="social.id"><app-icon [name]="social.icon" /></span>
@@ -37,19 +37,15 @@
         </ul>
 
         <div class="downloads" appReveal="300">
-          <h3>{{ t().contact.downloads }}</h3>
-          <div class="downloads__list">
-            @for (cv of cvFiles; track cv.id) {
-              <a class="download card" [href]="cv.file" download>
-                <span class="download__icon"><app-icon name="file-text" /></span>
-                <span class="download__text">
-                  <strong>{{ cv.label[i18n.lang()] }}</strong>
-                  <span>{{ cv.description[i18n.lang()] }}</span>
-                </span>
-                <app-icon name="download" />
-              </a>
-            }
-          </div>
+          <h3>{{ t().contact.cvTitle }}</h3>
+          <a class="download card" [href]="content.cvUrl()" target="_blank" rel="noopener noreferrer">
+            <span class="download__icon"><app-icon name="file-text" /></span>
+            <span class="download__text">
+              <strong>{{ t().contact.cvAction }}</strong>
+              <span>{{ t().contact.cvNote }}</span>
+            </span>
+            <app-icon name="arrow-up-right" />
+          </a>
         </div>
       </div>
 

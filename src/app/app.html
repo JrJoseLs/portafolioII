@@ -15,6 +15,12 @@
 
 <app-footer />
 
+@defer (when adminOpen()) {
+  @if (adminOpen()) {
+    <app-admin-panel (closed)="closeAdmin()" />
+  }
+}
+
 <app-explore-hud />
 <app-command-palette />
 <app-toast />

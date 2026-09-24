@@ -1,0 +1,146 @@
+<dialog #dialog class="admin" aria-label="Panel de edición" (close)="closed.emit()" (cancel)="close()">
+  <div class="panel glass-strong">
+    <header class="head">
+      <div>
+        <h2><app-icon name="wrench" /> Panel de edición</h2>
+        <p>Cambios privados: se ven al instante y se guardan en este navegador.</p>
+      </div>
+      <button type="button" class="icon-btn" aria-label="Cerrar panel" (click)="close()">
+        <app-icon name="x" />
+      </button>
+    </header>
+
+    <div class="body">
+      <!-- Foto -->
+      <section class="group">
+        <h3><app-icon name="user" /> Foto de la tarjeta</h3>
+        <div class="photo">
+          <img [src]="form().photo || 'images/profile.webp'" alt="Vista previa de la foto" width="96" height="96" />
+          <div class="photo__actions">
+            <label class="btn btn--glass btn--sm">
+              <app-icon name="download" />
+              Elegir imagen…
+              <input #photoInput type="file" accept="image/*" hidden (change)="onPhotoSelected(photoInput)" />
+            </label>
+            @if (form().photo.startsWith('data:')) {
+              <button type="button" class="btn btn--glass btn--sm" (click)="downloadPhoto()">
+                <app-icon name="file-text" />
+                Descargar .webp
+              </button>
+              <button type="button" class="btn btn--ghost btn--sm" (click)="removePhoto()">
+                <app-icon name="x" />
+                Quitar
+              </button>
+            }
+          </div>
+        </div>
+        <p class="hint">
+          La imagen se recorta en un cuadrado de 512 px y se guarda dentro de <code>content.json</code>.
+          También puedes reemplazar directamente el archivo <code>public/images/profile.webp</code> del proyecto.
+        </p>
+        @if (photoWarning()) {
+          <p class="warn"><app-icon name="zap" /> La foto es pesada. Descárgala y guárdala como <code>public/images/profile.webp</code> en su lugar.</p>
+        }
+      </section>
+
+      <!-- Datos -->
+      <section class="group">
+        <h3><app-icon name="badge-check" /> Datos</h3>
+        <div class="fields">
+          <label class="field">
+            <span>Nombre público</span>
+            <input #nameInput type="text" [value]="form().name" [placeholder]="defaults.name" (input)="update('name', nameInput.value)" />
+          </label>
+          <label class="field">
+            <span>Correo</span>
+            <input #emailInput type="email" [value]="form().email" [placeholder]="defaults.email" (input)="update('email', emailInput.value)" />
+          </label>
+          <label class="field field--wide">
+            <span>Enlace del CV (Google Drive, solo visualización)</span>
+            <input #cvInput type="url" [value]="form().cvUrl" [placeholder]="defaults.cvUrl" (input)="update('cvUrl', cvInput.value)" />
+          </label>
+          <label class="field">
+            <span>Cargo · Español</span>
+            <input #hEs type="text" [value]="form().headlineEs" [placeholder]="defaults.headlineEs" (input)="update('headlineEs', hEs.value)" />
+          </label>
+          <label class="field">
+            <span>Cargo · Inglés</span>
+            <input #hEn type="text" [value]="form().headlineEn" [placeholder]="defaults.headlineEn" (input)="update('headlineEn', hEn.value)" />
+          </label>
+          <label class="field">
+            <span>Ubicación · Español</span>
+            <input #lEs type="text" [value]="form().locationEs" [placeholder]="defaults.locationEs" (input)="update('locationEs', lEs.value)" />
+          </label>
+          <label class="field">
+            <span>Ubicación · Inglés</span>
+            <input #lEn type="text" [value]="form().locationEn" [placeholder]="defaults.locationEn" (input)="update('locationEn', lEn.value)" />
+          </label>
+        </div>
+      </section>
+
+      <!-- Sobre mí -->
+      <section class="group">
+        <h3><app-icon name="file-text" /> Sobre mí</h3>
+        <p class="hint">Un párrafo por bloque, separados por una línea en blanco.</p>
+        <div class="fields">
+          <label class="field field--wide">
+            <span>Español</span>
+            <textarea #aEs rows="7" (input)="update('aboutEs', aEs.value)">{{ form().aboutEs }}</textarea>
+          </label>
+          <label class="field field--wide">
+            <span>Inglés</span>
+            <textarea #aEn rows="7" (input)="update('aboutEn', aEn.value)">{{ form().aboutEn }}</textarea>
+          </label>
+        </div>
+      </section>
+
+      <!-- Redes -->
+      <section class="group">
+        <h3><app-icon name="globe" /> Redes</h3>
+        <div class="fields">
+          @for (social of socialLinks; track social.id) {
+            <label class="field">
+              <span><app-icon [name]="social.icon" /> {{ social.label }}</span>
+              <input #socialInput type="url" [value]="form().socials[social.id]" [placeholder]="social.url" (input)="updateSocial(social.id, socialInput.value)" />
+            </label>
+          }
+        </div>
+      </section>
+
+      <!-- Cómo publicar -->
+      <section class="group group--info">
+        <h3><app-icon name="rocket" /> Publicar los cambios</h3>
+        <ol>
+          <li>Pulsa <strong>Descargar content.json</strong>.</li>
+          <li>Guarda el archivo en la carpeta <code>public/</code> del proyecto (reemplaza el que haya).</li>
+          <li>Haz commit y push a <code>main</code>: GitHub Actions publica el sitio actualizado.</li>
+        </ol>
+        <p class="hint">Mientras no lo subas, los cambios solo se ven en este navegador.</p>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <div class="foot__status">
+        @if (saved()) {
+          <span class="ok"><app-icon name="check" /> Guardado en este navegador</span>
+        } @else if (hasDraft()) {
+          <span><app-icon name="clock" /> Hay cambios sin publicar</span>
+        }
+      </div>
+      <div class="foot__actions">
+        <button type="button" class="btn btn--ghost btn--sm" (click)="reset()">
+          <app-icon name="shuffle" />
+          Restablecer
+        </button>
+        <button type="button" class="btn btn--glass btn--sm" (click)="save()">
+          <app-icon name="check" />
+          Guardar
+        </button>
+        <button type="button" class="btn btn--primary btn--sm" (click)="downloadJson()">
+          <app-icon name="download" />
+          Descargar content.json
+        </button>
+      </div>
+    </footer>
+  </div>
+</dialog>

@@ -75,8 +75,7 @@ export class CommandPalette {
     const actions: Command[] = [
       { id: 'theme', group: 'actions', label: t.toggleTheme, icon: this.theme.isDark() ? 'sun' : 'moon', keywords: 'tema theme dark light oscuro claro modo', run: () => this.theme.toggle() },
       { id: 'lang', group: 'actions', label: t.switchLang, icon: 'languages', keywords: 'idioma language english español ingles', run: () => this.i18n.toggle() },
-      { id: 'cv', group: 'actions', label: t.downloadCv, icon: 'download', keywords: 'cv curriculum resume pdf descargar download', run: () => this.actions.downloadCv('cv') },
-      { id: 'resume', group: 'actions', label: t.downloadResume, icon: 'file-text', keywords: 'cv curriculum resume pdf english ingles', run: () => this.actions.downloadCv('resume') },
+      { id: 'cv', group: 'actions', label: t.openCv, icon: 'file-text', keywords: 'cv curriculum resume drive pdf ver abrir open', run: () => this.actions.openCv() },
       { id: 'email', group: 'actions', label: t.copyEmail, icon: 'copy', keywords: 'email correo mail copiar copy contacto contact', run: () => void this.actions.copyEmail() },
     ];
     if (this.scene.available()) {

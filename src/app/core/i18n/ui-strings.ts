@@ -5,9 +5,9 @@
  */
 const es = {
   meta: {
-    title: 'José Luis Isabel Matos · Ingeniero de Software',
+    title: 'Jose Matos · Ingeniero de Software',
     description:
-      'Portafolio de José Luis Isabel Matos, ingeniero de software especializado en automatización de datos, operaciones técnicas y desarrollo web con experiencias 3D.',
+      'Portafolio de Jose Matos, ingeniero de software especializado en automatización de datos, operaciones técnicas y desarrollo web con experiencias 3D.',
   },
   a11y: {
     skip: 'Saltar al contenido',
@@ -17,7 +17,7 @@ const es = {
     switchLang: 'Switch to English',
     search: 'Abrir buscador de comandos',
     backToTop: 'Volver arriba',
-    photo: 'Foto de José Luis Isabel Matos',
+    photo: 'Foto de Jose Matos',
   },
   hero: {
     greeting: 'Hola, soy',
@@ -25,7 +25,7 @@ const es = {
     roles: ['Ingeniero de Software', 'Automatización de datos', 'Operaciones técnicas', 'Desarrollador web', 'Creador de experiencias 3D'],
     lead: 'Convierto procesos manuales y datos dispersos en flujos automáticos, paneles claros y aplicaciones web que la gente disfruta usar.',
     ctaProjects: 'Ver proyectos',
-    ctaCv: 'Descargar CV',
+    ctaCv: 'Ver CV',
     ctaExplore: 'Explorar en 3D',
     hint: 'Haz clic en el fondo para crear una onda',
     scroll: 'Desliza',
@@ -34,9 +34,9 @@ const es = {
     eyebrow: 'Sobre mí',
     title: 'Datos, automatización y código con propósito.',
     paragraphs: [
-      'Soy ingeniero de software egresado de UNAPEC y trabajo como especialista en operaciones técnicas y automatización en SIGSIM Tecnología Educativa, donde automatizo la extracción y el procesamiento de datos, construyo modelos en Google Sheets y Excel, y diseño paneles en Tableau para seguir el rendimiento.',
-      'Antes combiné la contabilidad con el soporte técnico: atendí clientes, gestioné pagos y mantuve los equipos funcionando. Esa mezcla me enseñó a entender el negocio antes de escribir una sola línea de código.',
-      'Fuera del trabajo exploro el desarrollo web y los gráficos 3D con Three.js: desde un sistema solar interactivo hasta juegos que corren en el navegador.',
+      'Trabajo en SIGSIM Tecnología Educativa como especialista en operaciones técnicas y automatización: automatizo la extracción y el procesamiento de datos con Google Apps Script y Python, construyo modelos en Google Sheets y Excel, y diseño paneles en Tableau para dar seguimiento al rendimiento.',
+      'Mi día a día consiste en convertir tareas manuales y repetitivas en procesos que se ejecutan solos, auditar los datos para detectar errores y discrepancias, y dejar los reportes listos para tomar decisiones.',
+      'Soy ingeniero de software egresado de UNAPEC. Fuera del trabajo dedico tiempo al desarrollo web y a los gráficos 3D en proyectos personales, donde pruebo tecnologías nuevas.',
     ],
     facts: {
       location: 'Ubicación',
@@ -106,12 +106,14 @@ const es = {
     messagePlaceholder: 'Cuéntame en qué puedo ayudarte…',
     sendEmail: 'Enviar por correo',
     sendWhatsapp: 'Enviar por WhatsApp',
-    greeting: 'Hola José Luis, soy',
+    greeting: 'Hola Jose, soy',
     subject: 'Contacto desde tu portafolio',
-    downloads: 'Descargar currículum',
+    cvTitle: 'Currículum',
+    cvAction: 'Ver CV en Google Drive',
+    cvNote: 'Se abre en Google Drive · Solo lectura',
   },
   footer: {
-    made: 'Diseñado y desarrollado por José Luis con Angular y Three.js.',
+    made: 'Diseñado y desarrollado por Jose Matos con Angular y Three.js.',
     palette: 'Pulsa {key} para navegar con el teclado',
   },
   palette: {
@@ -124,8 +126,7 @@ const es = {
     goTo: 'Ir a',
     toggleTheme: 'Cambiar tema claro / oscuro',
     switchLang: 'Switch to English',
-    downloadCv: 'Descargar CV actualizado',
-    downloadResume: 'Descargar resume en inglés',
+    openCv: 'Abrir el CV en Google Drive',
     copyEmail: 'Copiar correo electrónico',
     explore: 'Entrar al modo exploración 3D',
   },
@@ -150,9 +151,9 @@ export type UiStrings = typeof es;
 
 const en: UiStrings = {
   meta: {
-    title: 'José Luis Isabel Matos · Software Engineer',
+    title: 'Jose Matos · Software Engineer',
     description:
-      'Portfolio of José Luis Isabel Matos, a software engineer focused on data automation, technical operations and web development with 3D experiences.',
+      'Portfolio of Jose Matos, a software engineer focused on data automation, technical operations and web development with 3D experiences.',
   },
   a11y: {
     skip: 'Skip to content',
@@ -162,7 +163,7 @@ const en: UiStrings = {
     switchLang: 'Cambiar a español',
     search: 'Open command menu',
     backToTop: 'Back to top',
-    photo: 'Photo of José Luis Isabel Matos',
+    photo: 'Photo of Jose Matos',
   },
   hero: {
     greeting: "Hi, I'm",
@@ -170,7 +171,7 @@ const en: UiStrings = {
     roles: ['Software Engineer', 'Data automation', 'Technical operations', 'Web developer', '3D experience maker'],
     lead: 'I turn manual processes and scattered data into automated workflows, clear dashboards and web apps people enjoy using.',
     ctaProjects: 'View projects',
-    ctaCv: 'Download CV',
+    ctaCv: 'View CV',
     ctaExplore: 'Explore in 3D',
     hint: 'Click the background to send a wave',
     scroll: 'Scroll',
@@ -179,9 +180,9 @@ const en: UiStrings = {
     eyebrow: 'About me',
     title: 'Data, automation and purposeful code.',
     paragraphs: [
-      'I am a software engineer who graduated from UNAPEC and work as a technical operations and automation specialist at SIGSIM Tecnología Educativa, where I automate data extraction and processing, build models in Google Sheets and Excel, and design Tableau dashboards to track performance.',
-      'Before that I combined accounting with technical support: I served customers, handled payments and kept the computers running. That mix taught me to understand the business before writing a single line of code.',
-      'Outside work I explore web development and 3D graphics with Three.js — from an interactive solar system to games that run in the browser.',
+      'I work at SIGSIM Tecnología Educativa as a technical operations and automation specialist: I automate data extraction and processing with Google Apps Script and Python, build models in Google Sheets and Excel, and design Tableau dashboards to track performance.',
+      'My day-to-day is turning manual, repetitive tasks into processes that run on their own, auditing data to catch errors and discrepancies, and keeping reports ready for decision-making.',
+      'I am a software engineer who graduated from UNAPEC. Outside work I spend time on web development and 3D graphics in personal projects, where I try out new technologies.',
     ],
     facts: {
       location: 'Location',
@@ -251,12 +252,14 @@ const en: UiStrings = {
     messagePlaceholder: 'Tell me how I can help…',
     sendEmail: 'Send by email',
     sendWhatsapp: 'Send via WhatsApp',
-    greeting: "Hi José Luis, I'm",
+    greeting: "Hi Jose, I'm",
     subject: 'Contact from your portfolio',
-    downloads: 'Download résumé',
+    cvTitle: 'Résumé',
+    cvAction: 'View CV on Google Drive',
+    cvNote: 'Opens in Google Drive · View only',
   },
   footer: {
-    made: 'Designed and built by José Luis with Angular and Three.js.',
+    made: 'Designed and built by Jose Matos with Angular and Three.js.',
     palette: 'Press {key} to navigate with the keyboard',
   },
   palette: {
@@ -269,8 +272,7 @@ const en: UiStrings = {
     goTo: 'Go to',
     toggleTheme: 'Toggle light / dark theme',
     switchLang: 'Cambiar a español',
-    downloadCv: 'Download updated CV (Spanish)',
-    downloadResume: 'Download English résumé',
+    openCv: 'Open CV in Google Drive',
     copyEmail: 'Copy email address',
     explore: 'Enter 3D explore mode',
   },

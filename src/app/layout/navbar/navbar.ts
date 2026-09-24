@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
+import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { PortfolioActionsService } from '../../core/portfolio-actions.service';
 import { ScrollSpyService } from '../../core/scroll-spy.service';
@@ -23,6 +24,7 @@ export class Navbar {
   protected readonly i18n = inject(I18nService);
   protected readonly theme = inject(ThemeService);
   protected readonly spy = inject(ScrollSpyService);
+  protected readonly content = inject(ContentService);
   private readonly actions = inject(PortfolioActionsService);
 
   protected readonly t = this.i18n.t;
