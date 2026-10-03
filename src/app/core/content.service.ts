@@ -31,6 +31,7 @@ export class ContentService {
   readonly email = computed(() => this.overrides().email?.trim() || PROFILE.email);
   readonly cvUrl = computed(() => this.overrides().cvUrl?.trim() || PROFILE.cvUrl);
   readonly photo = computed(() => this.overrides().photo?.trim() || PROFILE.photo);
+  readonly photoBackground = computed(() => this.overrides().photoBackground?.trim() || PROFILE.photoBackground);
   readonly headline = computed(() => this.pick(this.overrides().headline) || PROFILE.headline[this.i18n.lang()]);
   readonly location = computed(() => this.pick(this.overrides().location) || this.i18n.t().hero.location);
 

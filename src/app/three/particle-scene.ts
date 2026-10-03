@@ -34,6 +34,14 @@ import type { ParticleEngine, SceneLayout } from './particle-engine';
       pointer-events: none;
       opacity: 0;
       transition: opacity 1.2s ease;
+      /*
+       * El lienzo vive en su propia capa de composición. Sin esto, algunos
+       * navegadores dejan trozos sin repintar (cuadros grises) al combinar
+       * WebGL con los desenfoques de las tarjetas de cristal.
+       */
+      transform: translateZ(0);
+      will-change: transform;
+      contain: strict;
     }
     :host(.is-ready) {
       opacity: 1;

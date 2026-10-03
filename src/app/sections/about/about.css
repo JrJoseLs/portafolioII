@@ -33,6 +33,9 @@
   border-radius: 50%;
   background: conic-gradient(from var(--angle, 0deg), var(--accent), var(--accent-2), var(--accent-3), var(--accent));
   animation: spin-ring 6s linear infinite;
+  /* Solo se pinta el aro: así, con la foto sin fondo, se ve lo que hay detrás. */
+  -webkit-mask: radial-gradient(circle closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  mask: radial-gradient(circle closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
 }
 .profile__photo img {
   display: block;
@@ -40,7 +43,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  background: #fff;
+  background: var(--photo-bg, #fff);
   border: 4px solid var(--bg-elevated);
 }
 

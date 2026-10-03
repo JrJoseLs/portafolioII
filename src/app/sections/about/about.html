@@ -2,7 +2,7 @@
   <div class="container about">
     <div class="profile" appReveal>
       <article class="profile__card card" appTilt="5">
-        <div class="profile__photo">
+        <div class="profile__photo" [style.--photo-bg]="content.photoBackground()">
           <img [src]="content.photo()" [alt]="t().a11y.photo" width="480" height="480" loading="lazy" decoding="async" />
         </div>
         <h3 class="profile__name">{{ content.name() }}</h3>

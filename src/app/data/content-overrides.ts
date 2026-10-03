@@ -22,6 +22,8 @@ export interface ContentOverrides {
   cvUrl?: string;
   /** Ruta de la foto (`images/…`) o una imagen incrustada en formato data URL. */
   photo?: string;
+  /** Color o degradado CSS detrás de la foto. */
+  photoBackground?: string;
   /** Párrafos de la sección "Sobre mí". */
   about?: Localized<readonly string[]>;
   /** Enlaces de redes sociales, por id: `{ "github": "https://…" }`. */

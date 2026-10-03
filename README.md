@@ -21,8 +21,8 @@ especializado en automatización de datos y operaciones técnicas.
   inferior tipo iOS en móvil.
 - **Accesible**: navegación por teclado, enlace para saltar al contenido,
   etiquetas ARIA y respeto de `prefers-reduced-motion`.
-- **Panel de edición privado** (`#admin`): cambia la foto, los textos y los
-  enlaces del sitio sin tocar código.
+- **Panel de edición privado** (`#admin`): cambia la foto y su fondo, los textos
+  y los enlaces del sitio sin tocar código.
 - **Rápido**: Three.js se carga de forma diferida (≈ 89 kB comprimidos en la
   carga inicial) y la animación se pausa cuando la pestaña no está visible.
 
@@ -150,6 +150,18 @@ Dos formas, la que prefieras:
    512×512 y se guarda dentro de `content.json`.
 2. **Reemplazando el archivo**: guarda tu foto como `public/images/profile.webp`
    (cuadrada, 512×512 recomendado).
+
+### Cambiar el fondo de la foto
+
+La foto de la tarjeta está recortada (sin fondo), así que puedes elegir qué se
+ve detrás: en el panel de edición hay un selector de color y cinco atajos
+(blanco, gris claro, oscuro, degradado y transparente). También puedes fijarlo
+en `photoBackground` dentro de `src/app/data/profile.ts`; acepta cualquier valor
+CSS, incluidos degradados.
+
+> Si subes una foto nueva y quieres que el fondo se note, la imagen tiene que
+> tener transparencia (PNG o WebP con canal alfa). Si tiene fondo sólido, ese
+> fondo tapará el color elegido.
 
 ### Textos de la interfaz
 

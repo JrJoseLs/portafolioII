@@ -23,6 +23,8 @@ export const PROFILE = {
     en: 'Technical Operations & Automation Specialist',
   } satisfies Localized,
   photo: 'images/profile.webp',
+  /** Fondo detrás de la foto (se nota porque la foto está recortada). */
+  photoBackground: '#ffffff',
   email: 'junior_er@hotmail.es',
   phone: '+1 809 360 3722',
   whatsappNumber: '18093603722',

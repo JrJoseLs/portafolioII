@@ -15,7 +15,13 @@
       <section class="group">
         <h3><app-icon name="user" /> Foto de la tarjeta</h3>
         <div class="photo">
-          <img [src]="form().photo || 'images/profile.webp'" alt="Vista previa de la foto" width="96" height="96" />
+          <img
+            [src]="form().photo || 'images/profile.webp'"
+            [style.background]="form().photoBackground"
+            alt="Vista previa de la foto"
+            width="96"
+            height="96"
+          />
           <div class="photo__actions">
             <label class="btn btn--glass btn--sm">
               <app-icon name="download" />
@@ -41,6 +47,36 @@
         @if (photoWarning()) {
           <p class="warn"><app-icon name="zap" /> La foto es pesada. Descárgala y guárdala como <code>public/images/profile.webp</code> en su lugar.</p>
         }
+
+        <div class="bg">
+          <span class="bg__label">Fondo de la foto</span>
+          <div class="bg__options">
+            <label class="bg__picker" title="Elegir un color">
+              <input
+                #bgColor
+                type="color"
+                [value]="photoColor()"
+                aria-label="Color del fondo de la foto"
+                (input)="update('photoBackground', bgColor.value)"
+              />
+            </label>
+            @for (option of photoBackgrounds; track option.value) {
+              <button
+                type="button"
+                class="bg__swatch"
+                [class.is-active]="form().photoBackground === option.value"
+                [class.is-transparent]="option.value === 'transparent'"
+                [style.background]="option.value === 'transparent' ? null : option.value"
+                [attr.aria-pressed]="form().photoBackground === option.value"
+                [title]="option.label"
+                (click)="update('photoBackground', option.value)"
+              >
+                <span class="visually-hidden">{{ option.label }}</span>
+              </button>
+            }
+          </div>
+        </div>
+        <p class="hint">La foto está recortada, así que este color es lo que se ve detrás de ti en la tarjeta.</p>
       </section>
 
       <!-- Datos -->

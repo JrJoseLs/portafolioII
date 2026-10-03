@@ -22,6 +22,16 @@ describe('ContentService', () => {
     expect(content.hasDraft()).toBeFalse();
   });
 
+  it('permite cambiar el fondo de la foto', () => {
+    expect(content.photoBackground()).toBe(PROFILE.photoBackground);
+
+    content.saveDraft({ photoBackground: 'transparent' });
+    expect(content.photoBackground()).toBe('transparent');
+
+    content.saveDraft({ photoBackground: '  ' });
+    expect(content.photoBackground()).toBe(PROFILE.photoBackground);
+  });
+
   it('parte el nombre para la portada', () => {
     expect(content.nameParts()).toEqual({ first: 'Jose', rest: 'Matos' });
   });

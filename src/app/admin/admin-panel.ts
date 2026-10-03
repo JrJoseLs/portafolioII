@@ -25,10 +25,20 @@ interface FormState {
   email: string;
   cvUrl: string;
   photo: string;
+  photoBackground: string;
   aboutEs: string;
   aboutEn: string;
   socials: Record<string, string>;
 }
+
+/** Fondos rápidos para la foto (el selector de color admite cualquier otro). */
+const PHOTO_BACKGROUNDS = [
+  { label: 'Blanco', value: '#ffffff' },
+  { label: 'Gris claro', value: '#f5f5f7' },
+  { label: 'Oscuro', value: '#1c1c1e' },
+  { label: 'Degradado', value: 'linear-gradient(140deg, #2997ff, #7d7aff, #ff4f9a)' },
+  { label: 'Transparente', value: 'transparent' },
+];
 
 /** Tamaño de la foto guardada dentro de content.json. */
 const PHOTO_SIZE = 512;
@@ -59,6 +69,12 @@ export class AdminPanel {
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
   protected readonly socialLinks = SOCIAL_LINKS;
+  protected readonly photoBackgrounds = PHOTO_BACKGROUNDS;
+  /** El selector de color solo entiende hex: con un degradado muestra el blanco. */
+  protected readonly photoColor = computed(() => {
+    const value = this.form().photoBackground;
+    return /^#[0-9a-f]{6}$/i.test(value) ? value : '#ffffff';
+  });
   protected readonly form = signal<FormState>(this.readCurrentValues());
   protected readonly saved = signal(false);
   protected readonly photoWarning = computed(() => this.form().photo.length > PHOTO_WARNING_BYTES);
@@ -147,6 +163,11 @@ export class AdminPanel {
     set('email', form.email.trim(), !form.email.trim() || form.email.trim() === this.defaults.email);
     set('cvUrl', form.cvUrl.trim(), !form.cvUrl.trim() || form.cvUrl.trim() === this.defaults.cvUrl);
     set('photo', form.photo, !form.photo || form.photo === PROFILE.photo);
+    set(
+      'photoBackground',
+      form.photoBackground,
+      !form.photoBackground || form.photoBackground === PROFILE.photoBackground,
+    );
 
     const headline = { es: form.headlineEs.trim(), en: form.headlineEn.trim() };
     set('headline', headline, headline.es === this.defaults.headlineEs && headline.en === this.defaults.headlineEn);
@@ -179,6 +200,7 @@ export class AdminPanel {
       email: overrides.email ?? PROFILE.email,
       cvUrl: overrides.cvUrl ?? PROFILE.cvUrl,
       photo: overrides.photo ?? PROFILE.photo,
+      photoBackground: overrides.photoBackground ?? PROFILE.photoBackground,
       aboutEs: (overrides.about?.es ?? UI_STRINGS.es.about.paragraphs).join('\n\n'),
       aboutEn: (overrides.about?.en ?? UI_STRINGS.en.about.paragraphs).join('\n\n'),
       socials: Object.fromEntries(SOCIAL_LINKS.map((link) => [link.id, overrides.socials?.[link.id] ?? link.url])),
