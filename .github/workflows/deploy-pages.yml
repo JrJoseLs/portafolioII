@@ -36,8 +36,8 @@ jobs:
       - name: Unit tests
         run: npm run test:ci
 
-      - name: Build for GitHub Pages
-        run: npm run build:gh-pages
+      - name: Build
+        run: npm run build
 
       - uses: actions/upload-pages-artifact@v5
         with:

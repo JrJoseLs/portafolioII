@@ -3,7 +3,7 @@
 Portafolio personal interactivo de **Jose Matos**, ingeniero de software
 especializado en automatización de datos y operaciones técnicas.
 
-🔗 **Sitio:** https://jrjosels.github.io/portafolioII/
+🔗 **Sitio:** https://jlport.duckdns.org/
 
 ## Características
 
@@ -56,8 +56,7 @@ npm start          # http://localhost:4200
 | Comando | Qué hace |
 | --- | --- |
 | `npm start` | Servidor de desarrollo con recarga automática. |
-| `npm run build` | Build de producción en `dist/j-port/` (para servir desde la raíz de un dominio). |
-| `npm run build:gh-pages` | Build con `base-href` `/portafolioII/` para GitHub Pages. |
+| `npm run build` | Build de producción en `dist/j-port/`. Usa rutas relativas, así que sirve tanto en un dominio propio como en un subdirectorio. |
 | `npm test` | Pruebas unitarias en modo watch. |
 | `npm run test:ci` | Pruebas una sola vez en Chrome headless. |
 | `npm run deploy:firebase` | (Opcional) Publica en Firebase Hosting. |
@@ -172,7 +171,7 @@ compila.
 ## Panel de edición (`#admin`)
 
 Añade `#admin` a la dirección del sitio
-(`https://jrjosels.github.io/portafolioII/#admin`) y se abre un panel privado
+(`https://jlport.duckdns.org/#admin`) y se abre un panel privado
 para cambiar la foto, el nombre, el cargo, la ubicación, el correo, el enlace
 del CV, los textos de "Sobre mí" y los enlaces de redes.
 
@@ -188,6 +187,24 @@ Como el sitio es estático (sin servidor ni base de datos), el panel funciona as
 > sería visible en el código y daría una falsa sensación de seguridad. No expone
 > nada, porque solo edita información que ya es pública, y nadie más que tú puede
 > publicar cambios: para eso hace falta acceso al repositorio.
+
+## Dominio
+
+El sitio se publica en GitHub Pages y se sirve desde el dominio propio
+**https://jlport.duckdns.org/**. La dirección original
+(`jrjosels.github.io/portafolioII`) sigue funcionando y redirige al dominio.
+
+Dos piezas lo hacen posible:
+
+- [`public/CNAME`](public/CNAME) guarda el dominio, para que GitHub lo conserve
+  en cada publicación.
+- El build usa `--base-href ./` (rutas relativas). Con una ruta fija como
+  `/portafolioII/`, el sitio se veía **en blanco** en el dominio propio, porque
+  el navegador buscaba los archivos en `jlport.duckdns.org/portafolioII/`.
+
+Si algún día cambias de dominio: edita `public/CNAME`, ponlo también en
+**Settings → Pages → Custom domain** y actualiza las direcciones de
+`og:url`, `og:image` y los datos estructurados en `src/index.html`.
 
 ## Despliegue en GitHub Pages
 
